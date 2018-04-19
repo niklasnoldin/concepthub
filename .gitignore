@@ -1,0 +1,7 @@
+*.ai
+*.pdf
+*.svg
+*.pages
+.DS_Store
+.idea
+.vscode
