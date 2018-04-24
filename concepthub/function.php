@@ -1,0 +1,7 @@
+<?php
+$pagetitle = Seitentitel;
+
+
+
+
+?>
