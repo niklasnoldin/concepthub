@@ -1,6 +1,6 @@
 <?php
 include "function.php";
-$pagetitle = "meine sammlung.";
+$pagetitle = "sammlung.";
 
 include "header.php";
 

@@ -21,6 +21,39 @@ h1, h2{
     text-transform: lowercase;
 }
 
+/* === STYLE CLASSES === */
+
+.crosspattern{
+    background-image: url(img/cross.svg);
+    background-size: 20px;
+    background-position: -5px -5px;
+}
+
+.circlepattern{
+    background-image: url(img/circle.svg);
+    background-size: 20px;
+    background-position: -5px -5px;
+}
+
+.green_bg{ background-color: aquamarine; }
+
+.blue_bg{ background-color: aqua; }
+
+.red_bg{ background-color: coral; }
+
+.orange_bg{ background-color: darkorange;}
+
+.locked::before{
+    content: "";
+    display: block;
+    margin: 0.25em 0.2em 0 -0.1em;
+    float: left;
+    width: 0.8em;
+    height: 0.8em;
+    background-image: url(img/locked.svg);
+
+}
+
 /* === HEADER === */
 
 header section{
@@ -233,12 +266,13 @@ header nav{
 }
 header nav ul{
     width: 100vw;
-    height: 100vh;
+    height: 60vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     margin-top: 3em;
+    overflow-y: scroll;
 }
 
 header nav ul a{
@@ -336,7 +370,7 @@ main{
 
     will-change: background;
     transition: background 0.5s;
-    z-index: -5;
+    z-index: 5;
 }
 #add a:link, a:visited{
     color: white;
@@ -345,7 +379,7 @@ main{
     background: rgb(82, 179, 82);
 }
 #add:active{
-    margin: 3px 3px 0 0;
+    margin: 0 -3px -3px 0;
     box-shadow: black 2px 2px 2px;
 }
 
@@ -356,45 +390,38 @@ main ul li a h2{
     color: white;
 }
 
+main ul li a p{
+    font-style: italic;
+    color: black;
+    background-color: white;
+    padding: 0 0.3em;
+}
+
 main ul li a{
     height: 45vh;
-    min-width: 49.2vw;
     background-color: white;
     background-image: url();
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
 main ul{
     display: flex;
+    align-items: stretch;
+    flex-direction: column;
     flex-wrap: wrap;
+    
 }
 
-.crosspattern{
-    background-image: url(img/cross.svg);
-    background-size: 20px;
-    background-position: -5px -5px;
-}
-
-.circlepattern{
-    background-image: url(img/circle.svg);
-    background-size: 20px;
-    background-position: -5px -5px;
-}
-
-.green_bg{
-    background-color: aquamarine;
-}
-
-.blue_bg{
-    background-color: aqua;
-}
-
-.red_bg{
-    background-color: coral;
-}
-
-.orange_bg{
-    background-color: darkorange;
+@media (min-width: 800px){
+    main ul {
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    main ul li a{
+        width: 49vw;
+    }
 }

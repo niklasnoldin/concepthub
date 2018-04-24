@@ -13,23 +13,16 @@
                 <h2>
                     Konzept2
                 </h2>
+                <p>von Niklas Noldin</p>
             </a>
         </li>
         <li>
             <a href="" class="blue_bg">
-                <h2>
+                <h2 class="locked">
                     Konzept3
                 </h2>
             </a>
         </li>
-        <li>
-            <a href="" class="crosspattern green_bg">
-                <h2>
-                    Konzept4
-                </h2>
-            </a>
-        </li>
-        
     </ul>
     
 </main>
