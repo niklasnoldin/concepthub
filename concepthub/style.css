@@ -35,13 +35,15 @@ h1, h2{
     background-position: -5px -5px;
 }
 
-.green_bg{ background-color: aquamarine; }
+.green_bg{background-color: aquamarine; }
 
-.blue_bg{ background-color: aqua; }
+.blue_bg{background-color: aqua;}
 
-.red_bg{ background-color: coral; }
+.red_bg{background-color: coral; }
 
-.orange_bg{ background-color: darkorange;}
+.orange_bg{background-color: darkorange;}
+
+.white_bg{background-color: antiquewhite;}
 
 .locked::before{
     content: "";
@@ -341,7 +343,6 @@ header ul form input[name="search"]{
 
 main{
     /* background: lightblue; */
-    height: 150vh;
     /* border: 5px black solid; */
     margin: 6em 0 0 0;
     z-index: -10;
@@ -389,6 +390,10 @@ main ul li a h2{
     background: black;
     color: white;
 }
+main ul li a h2::after{
+    content: ".";
+    margin: 0 0 0 -0.2em;
+}
 
 main ul li a p{
     font-style: italic;
@@ -400,7 +405,9 @@ main ul li a p{
 main ul li a{
     height: 45vh;
     background-color: white;
-    background-image: url();
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
 
     display: flex;
     flex-direction: column;

@@ -2,9 +2,16 @@
     <div id="add"><a href="add_project.php">+</a></div>
     <ul>
         <li>
-            <a href="" class="orange_bg">
+            <a href="" class="orange_bg" style="background-image: url(img/placeholder.jpg);">
                 <h2>
                     Konzept1
+                </h2>
+            </a>
+        </li>
+        <li>
+            <a href="" class="crosspattern white_bg">
+                <h2 class="locked">
+                    Konzept3
                 </h2>
             </a>
         </li>
@@ -16,13 +23,7 @@
                 <p>von Niklas Noldin</p>
             </a>
         </li>
-        <li>
-            <a href="" class="blue_bg">
-                <h2 class="locked">
-                    Konzept3
-                </h2>
-            </a>
-        </li>
+        
     </ul>
     
 </main>

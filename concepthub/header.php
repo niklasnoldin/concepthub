@@ -27,11 +27,10 @@
                     <input type="text" name="search" placeholder="Suche">
                     <input type="submit" value=" " id="submit_search">
                 </form>
-                <a href="#"><li>Seite 1</li></a>
-                <a href="#"><li>Seite 1</li></a>
-                <a href="#1"><li>Seitge 2</li></a>
-                <a href="#2"><li>Seite 3</li></a>
-                <a href="#3"><li>Seite 4</li></a>
+                <a href="sammlung.php"><li>sammlung</li></a>
+                <a href="stoebern.php"><li>stöbern</li></a>
+                <a href="person.php?id=<?= $loggedId ?>"><li>mein Konto</li></a>
+                <a href="index.php"><li>logout</li></a>
             </ul>
         </nav>
     </header>
