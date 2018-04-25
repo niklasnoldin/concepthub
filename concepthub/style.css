@@ -416,19 +416,7 @@ main ul li a{
 }
 
 main ul{
-    display: flex;
-    align-items: stretch;
-    flex-direction: column;
-    flex-wrap: wrap;
-    
-}
-
-@media (min-width: 800px){
-    main ul {
-        flex-wrap: wrap;
-        flex-direction: row;
-    }
-    main ul li a{
-        width: 49vw;
-    }
+    display: grid;
+    grid-template-columns: 3fr 4fr;
+    grid-template-rows: 5fr 5fr;
 }

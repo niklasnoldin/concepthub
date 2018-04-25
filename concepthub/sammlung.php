@@ -23,7 +23,6 @@
                 <p>von Niklas Noldin</p>
             </a>
         </li>
-        
     </ul>
     
 </main>
