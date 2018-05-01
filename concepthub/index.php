@@ -1,10 +1,13 @@
 <?php
 include "function.php";
-$pagetitle = "sammlung.";
+$pagetitle = "concepthub";
+
 
 include "header.php";
 
-include "sammlung.php";
+
+if (!empty($_SESSION['user'])) include "sammlung.php";
+else include "login.php";
 
 include "footer.php";
 ?>

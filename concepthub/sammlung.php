@@ -9,8 +9,8 @@
             </a>
         </li>
         <li>
-            <a href="" class="crosspattern white_bg">
-                <h2 class="locked">
+            <a href="" class="locked white_bg">
+                <h2>
                     Konzept3
                 </h2>
             </a>

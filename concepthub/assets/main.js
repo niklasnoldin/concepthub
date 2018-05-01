@@ -1,11 +1,13 @@
-window.onload = ready;
+window.onload = Ready;
 
-function ready(){
-    toggle_nav();
+function Ready(){
+    Toggle_nav();
     //setProjectsWidth();
+    HideRegister();
+    ShowRegister();
 }
 
-function toggle_nav(){
+function Toggle_nav(){
     let ele = document.getElementById('nav_toggler');
     ele.onclick = actually_toggle_nav;
 }
@@ -15,9 +17,6 @@ function actually_toggle_nav(){
     navigation.classList.toggle('visible_nav');
     document.getElementById('burger_icon').classList.toggle('twisted_burger');
     document.getElementById('logo_title').classList.toggle('black_header');
-}
-
-function setRandomWidth(ele){
 }
 
 function setProjectsWidth(){ // not quite working yet
@@ -30,4 +29,29 @@ function setProjectsWidth(){ // not quite working yet
 
         listElements[index+1].style.width = (window.innerWidth - random / 100 * window.innerWidth) - 10 + "px";
     }
+}
+
+$('#register input[name="password2"]').keypress(function(){
+    let register_pass = $('#register input[name="password"]').val();
+    let register_pass2 = $('#register input[name="password2"]').val();
+    if (register_pass != register_pass2) $('#register input[name="password2"]').addClass('invalid_pass');
+    else $('#register input[name="password2"]').removeClass('invalid_pass');
+})
+
+function HideRegister(){
+    $('#register').css('display', 'none');
+}
+
+function ShowRegister(){
+    $('#show_register').click(function(){
+        if($('#login').css('display') == "grid"){
+            $('#register').css('display', 'grid');
+            $('#login').css('display', 'none');
+            $('#show_register').html('Du willst dich doch nur einloggen?');    
+        } else {
+            $('#register').css('display', 'none');
+            $('#login').css('display', 'grid');
+            $('#show_register').html('Eigentlich doch eher registrieren.');
+        }
+    })
 }
