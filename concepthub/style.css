@@ -355,7 +355,7 @@ input{
     padding: 0.5em 1em 0.5em 1em;
     margin-bottom: 0.5em;
     width: 50vw;
-    box-shadow: inset 0.2em 0.2em 0 lightseagreen;
+    
 }
  
 #submit_search{
@@ -454,9 +454,6 @@ main ul li a{
 
 }
 
-main ul{
-    padding: 6em 0 0 0 ;
-}
 
 /* === LOGIN === */
 
@@ -477,24 +474,28 @@ main ul{
 }
 
 #login_screen input{
-    width: 15em;
+    width: calc(90vw - 4em);
+    max-width: 15em;
     font-size: 1em;
+    box-shadow: inset 0.2em 0.2em 0 lightseagreen;
+    align-self: center;
 }
 
 #login_screen input[type="submit"]{
-    box-shadow: inset -0.2em -0.2em 0 lightslategray;
+    max-width: 17em;
+    width: calc(90vw - 2em);
+    box-shadow: inset -0.2em -0.2em 0 yellowgreen;
 }
-
 
 #show_register{
     color: orangered;
+    margin-bottom: 2em;
 }
 #show_register:visited{
     color: orangered;
 }
 
-
-.invalid_pass{
+#login_screen input.invalid_pass{
     box-shadow: inset 0.2em 0.2em 0 red;
 }
 
@@ -506,12 +507,66 @@ main ul{
     width: 15em;
 }
 @media (max-width: 540px){
-    #login_screen input{
-        width: 90vw;
-    }
+    
     #logo_fh{
-        width: 90vw;
+        width: 50vw;
+        margin: 0 0 -3em 0;
     }
+}
+
+
+#login_screen .radiobutton input{
+    position: absolute;
+    opacity: 0;
+    width: 0;
+}
+
+.fakeradio{
+    width: 0.75em;
+    height: 0.75em;
+
+    background: white;
+    border: 0.2em solid lightseagreen;
+    border-radius: 100%;
+
+    float: left;
+    margin: 0 1em;
+}
+.radiobutton{
+    display: block;
+    margin: 0.5em 0;
+}
+
+.radiobutton:hover .fakeradio{
+    border: 0.2em solid white;
+    background: lightseagreen;
+}
+
+.radiobutton input:checked ~ .fakeradio{
+    background: lightseagreen;
+}
+.radiobutton:hover input:checked ~ .fakeradio{
+    border: 0.2em solid lightseagreen;
+    background: lightseagreen;
+}
+fieldset{
+    width: calc(90vw - 4em);
+    max-width: 15em;
+    font-size: 1em;
+    align-self: center;
+    border: 0.2em solid lightseagreen;
+    border-radius: 0.25em;  
+    padding: 0.8em;  
+}
+legend{
+    background: white;
+    padding: 0 0.5em;
+    font-style: italic;
+}
+
+label{
+    font-style: italic;
+    color: grey;
 }
 
 /* === STOEBER === */

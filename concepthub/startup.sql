@@ -25,7 +25,7 @@ CREATE TABLE users (
 	email VARCHAR NOT NULL,
 	firstname VARCHAR(35),
 	lastname VARCHAR(35),
-	password VARCHAR,
+	password VARCHAR(255),
 	isfemale BOOLEAN,
 	description text,
 	course INTEGER REFERENCES courses(id) ON UPDATE CASCADE ON DELETE SET NULL,

@@ -5,6 +5,13 @@ function Ready(){
     //setProjectsWidth();
     HideRegister();
     ShowRegister();
+
+$('#register input[name="password2"]').keypress(function(){
+    let register_pass = $('#register input[name="password"]').val();
+    let register_pass2 = $('#register input[name="password2"]').val();
+    if (register_pass != register_pass2) $('#register input[name="password2"]').addClass('invalid_pass');
+    else $('#register input[name="password2"]').removeClass('invalid_pass');
+})
 }
 
 function Toggle_nav(){
@@ -31,12 +38,6 @@ function setProjectsWidth(){ // not quite working yet
     }
 }
 
-$('#register input[name="password2"]').keypress(function(){
-    let register_pass = $('#register input[name="password"]').val();
-    let register_pass2 = $('#register input[name="password2"]').val();
-    if (register_pass != register_pass2) $('#register input[name="password2"]').addClass('invalid_pass');
-    else $('#register input[name="password2"]').removeClass('invalid_pass');
-})
 
 function HideRegister(){
     $('#register').css('display', 'none');
