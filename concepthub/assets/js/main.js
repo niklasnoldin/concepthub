@@ -5,6 +5,8 @@ function Ready(){
     //setProjectsWidth();
     HideRegister();
     ShowRegister();
+    AddSkill();
+    delSkill();
 
     $('#register input[name="password2"]').keyup(function(){
         let register_pass2 = $('#register input[name="password2"]').val();
@@ -12,6 +14,7 @@ function Ready(){
         if (register_pass != register_pass2) $('#register input[name="password2"]').addClass('invalid_pass');
         else $('#register input[name="password2"]').removeClass('invalid_pass');
     })
+    
 }
 
 function Toggle_nav(){
@@ -25,19 +28,6 @@ function actually_toggle_nav(){
     document.getElementById('burger_icon').classList.toggle('twisted_burger');
     document.getElementById('logo_title').classList.toggle('black_header');
 }
-
-function setProjectsWidth(){ // not quite working yet
-    let listElements = document.querySelectorAll('main ul li');
-    for (let index = 0; index < listElements.length; index = index + 2) {
-
-        let random = 100 * (0.3 + (Math.random() / 4.0));
-        let aTag = listElements[index].childNodes[1];
-        aTag.style.width = random + "vw";
-
-        listElements[index+1].style.width = (window.innerWidth - random / 100 * window.innerWidth) - 10 + "px";
-    }
-}
-
 
 function HideRegister(){
     $('#register').css('display', 'none');
@@ -54,6 +44,24 @@ function ShowRegister(){
             $('#register').css('display', 'none');
             $('#login').css('display', 'grid');
             $('#show_register').html('Eigentlich doch eher registrieren.');
+        }
+    })
+}
+
+
+function AddSkill(){
+    $('#add_skill').click(function(event){
+        event.preventDefault();
+        $('#add_project_form fieldset div:first-of-type').clone().insertBefore(this);
+        delSkill();
+    })
+}
+
+function delSkill(){
+    $('#add_project_form span').click(function(event){
+        event.preventDefault();
+        if($('#add_project_form fieldset > div').length > 1){
+            $(this).parent().remove();
         }
     })
 }

@@ -47,6 +47,10 @@ h1::after, h2:after{
     content: ".";
 }
 
+main section > h2{
+    margin: 3em 0 1em 0;
+}
+
 /* === STYLE CLASSES === */
 
 
@@ -344,8 +348,7 @@ header nav ul a:hover{
 }
 
 #submit_search{
-    width: inherit;
-    font-size: 2em;
+    width: 2em;
     border: none;
     padding: 0.5em 1em 0.5em 1em;
 
@@ -438,7 +441,7 @@ form{
     max-width: 20em;
 }
 
-input, textarea, fieldset{
+input, textarea, fieldset, select{
     font-style: italic;
     border-radius: 0.2em;
     padding: 0.5em 1em;
@@ -457,17 +460,39 @@ label{
     color: grey;
 }
 
-main input, textarea, fieldset{
+main input, textarea, fieldset, select{
     border: 0.2em solid lightseagreen;
 }
 
+main input[type="submit"], select{
+    width: 100%
+}
 main input[type="submit"]{
     border: 0.2em solid yellowgreen;
-    width: calc(100%)
 }
 
 
+#add_skill{
+    margin-left: 2em;
+    font-size: 0.5em;
+    color: grey;
+    cursor: pointer;
+}
 
+#add_project_form select{
+    width: calc(100% - 1em);
+}
+
+#add_project_form span{
+    margin-left: 0em;
+    color: lightgrey;
+    cursor: pointer;
+}
+
+#add_project_form select:hover ~ span,
+#add_project_form span:hover{
+    color: orangered;
+}
 
 
 #show_register{
@@ -490,6 +515,7 @@ main input[type="submit"]{
 }
 
 .logo_fh{
+    margin-top: -3.5em;
     width: 15em;
     min-width: 30vw;
 }
