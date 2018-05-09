@@ -1,28 +1,82 @@
+<?php
+
+$concepthandle = $dbh->prepare("SELECT 
+    concepts.id,
+    users.username,
+    concepts.author,
+    concepts.title, 
+    users.firstname, 
+    users.lastname,
+    concepts.creationdate,
+    concepts.private
+FROM 
+    users
+INNER JOIN
+    likes ON (likes.follower = users.username)
+INNER JOIN 
+    concepts ON concepts.author = users.username OR likes.conceptid = concepts.id
+WHERE 
+    users.username = ?
+ORDER BY 
+    concepts.creationdate;
+;");
+
+$concepthandle->execute(array($_SESSION['user']));
+
+$concepts = $concepthandle->fetchAll();
+?>
+
 <main>
-    <div id="add"><a href="add_project.php">+</a></div>
-    <ul>
+    <a id="add" href="add_project.php">+</a>
+<ul>
+
+<?php
+
+if($concepts):
+foreach($concepts as $concept):
+?>  
         <li>
-            <a href="" class="orange_bg" style="background-image: url(img/placeholder.jpg);">
+            <a href="concept.php?id=<?=$concept->id?>" class="
+        <?php
+            $random = rand(0,4);
+            switch ($random) {
+                case 0:
+                    echo "green_bg";
+                    break;
+                case 1:
+                    echo "orange_bg";
+                    break;
+                case 2:
+                    echo "blue_bg";
+                    break;
+                case 3:
+                    echo "red_bg";
+                    break;
+                default:
+                    echo "orange_bg";
+                    break;
+            }
+            if($concept->private){
+                echo " locked \"";
+            }
+            if(!($concept->private)){
+        ?>
+            " style="background-image: url(assets/img/<?=$concept->id;?>.jpg);"
+            <?php };?>
+            >
                 <h2>
-                    Konzept1
+                    <?=$concept->title?>
                 </h2>
+                <?php
+                if($concept->username == $_SESSION['user']) echo "<p>von $concept->firstname $concept->lastname</p>";
+                ?>
             </a>
         </li>
-        <li>
-            <a href="" class="locked white_bg">
-                <h2>
-                    Konzept3
-                </h2>
-            </a>
-        </li>
-        <li>
-            <a href="" class="circlepattern red_bg">
-                <h2>
-                    Konzept2
-                </h2>
-                <p>von Niklas Noldin</p>
-            </a>
-        </li>
+<?php
+endforeach;
+else:
+    echo "<h2 style=\"margin: 30vh 0 0 50vw; transform: translate(-50%,-50%); z-index: -10;\">Noch keine Konzepte vorhanden</h2>";
+endif;
+?>
     </ul>
-    
 </main>

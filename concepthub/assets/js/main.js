@@ -6,12 +6,12 @@ function Ready(){
     HideRegister();
     ShowRegister();
 
-$('#register input[name="password2"]').keypress(function(){
-    let register_pass = $('#register input[name="password"]').val();
-    let register_pass2 = $('#register input[name="password2"]').val();
-    if (register_pass != register_pass2) $('#register input[name="password2"]').addClass('invalid_pass');
-    else $('#register input[name="password2"]').removeClass('invalid_pass');
-})
+    $('#register input[name="password2"]').keyup(function(){
+        let register_pass2 = $('#register input[name="password2"]').val();
+        let register_pass = $('#register input[name="password"]').val();
+        if (register_pass != register_pass2) $('#register input[name="password2"]').addClass('invalid_pass');
+        else $('#register input[name="password2"]').removeClass('invalid_pass');
+    })
 }
 
 function Toggle_nav(){
@@ -44,8 +44,9 @@ function HideRegister(){
 }
 
 function ShowRegister(){
-    $('#show_register').click(function(){
-        if($('#login').css('display') == "grid"){
+    $('#show_register').click(function(event){
+        event.preventDefault();
+        if(!($('#login').css('display') == "none")){
             $('#register').css('display', 'grid');
             $('#login').css('display', 'none');
             $('#show_register').html('Du willst dich doch nur einloggen?');    

@@ -24,6 +24,10 @@
             \"users\" (username, email, firstname, lastname, password, isfemale, membersince) 
             VALUES(?,?,?,?,?,?,?)
         ");
+
+        $likeshandle = $dbh->prepare("INSERT INTO likes (follower, conceptid) VALUES (?,?)");
+
+
         try{
             $createhandle->execute(array(
                 $_POST['username'],
@@ -34,8 +38,9 @@
                 $isfemale,
                 date(DATE_RFC822)
             ));
+
+            $likeshandle->execute(array($_POST['username'], null));
         } catch (PDOException $e){
-            $errormessage_login = "Es ist etwas schiefgelaufen.";
             header("Location: index.php?error=Es%20ist%20etwas%20schiefgelaufen.<br>Hast%20du%20eventuell%20schon%20ein%20Konto?");
             exit;
         }

@@ -14,9 +14,6 @@ if (isset($_SESSION[session_name()])){
 session_destroy();
 header("Location:index.php");
 
-
-// ============================ Ausgabe ===============
-
 include "header.php";
 ?>
     <p>Some kind of weird error occured</p>
