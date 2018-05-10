@@ -19,8 +19,7 @@
         $isfemale = $_POST['isfemale'];
         if ($isfemale == "null") $isfemale = null;
         
-        $createhandle = $dbh->prepare("
-            INSERT INTO 
+        $createhandle = $dbh->prepare("INSERT INTO 
             \"users\" (username, email, firstname, lastname, password, isfemale, membersince) 
             VALUES(?,?,?,?,?,?,?)
         ");

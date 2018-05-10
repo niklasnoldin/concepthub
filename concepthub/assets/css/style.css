@@ -51,6 +51,17 @@ main section > h2{
     margin: 3em 0 1em 0;
 }
 
+.error_message{
+    color: red; 
+    font-size: 0.5em; 
+    text-align: center;
+}
+.positive_message{
+    color: green; 
+    font-size: 0.5em; 
+    text-align: center;
+}
+
 /* === STYLE CLASSES === */
 
 

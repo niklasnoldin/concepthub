@@ -4,6 +4,41 @@ include "function.php";
 include "login_function.php";
 $pagetitle = "Konzept erstellen";
 
+if($_POST['title']):
+        
+    $inserthandle = $dbh->prepare("INSERT INTO concepts(title, author, description, desc_short, creationdate, private) VALUES(?, ?, ?, ?, ?, ?) RETURNING id");
+
+
+    $inserthandle->execute(array(
+        $_POST['title'],
+        $_SESSION['user'],
+        $_POST['long_desc'],
+        $_POST['description'],
+        date(DATE_RFC822),
+        $_POST['private']
+    ));
+
+    $insertid = $inserthandle->fetch()->id;
+
+    $needshandle = $dbh->prepare("INSERT INTO needsa(conceptid, courseid) VALUES(?,?)");
+
+    $getidhandle = $dbh->prepare('SELECT "id" FROM courses WHERE name = ?');
+
+    foreach ($_POST[ineed] as $need) {
+        
+        $getidhandle->execute(array($need));
+        $courseid = $getidhandle->fetch()->id;
+
+        $needshandle->execute(array(
+            $insertid,
+            $courseid
+        ));
+    }
+
+    $url = 'Location: project.php?id='.$insertid;
+    header($url);
+    exit;
+endif;
 include "header.php";
 
 if (empty($_SESSION['user'])): include "login.php";
@@ -22,8 +57,27 @@ else:
                 <div>
                     <select name="ineed[]" required>
                         <option value="default" selected disabled >Studiengang</option>
-                        <option value="MMT">Multimedia Technology</option>
-                        <option value="MMA">Multimedia Art</option>
+                        <option value="Multimedia Technology">Multimedia Technology</option>
+                        <option value="Multimedia Art">Multimedia Art</option>
+                        <option value="Biomedizinische Analytik">Biomedizinische Analytik</option>
+                        <option value="Betriebswirtschaft">Betriebswirtschaft</option>
+                        <option value="Design & Produktmanagement">Design & Produktmanagement</option>
+                        <option value="Ergotherapie">Ergotherapie</option>
+                        <option value="Gesundheits- & Krankenpflege">Gesundheits- & Krankenpflege</option>
+                        <option value="Hebammen">Hebammen</option>
+                        <option value="Holztechnologie & Holzbau">Holztechnologie & Holzbau</option>
+                        <option value="Informationstechnik & System-Management">Informationstechnik & System-Management</option>
+                        <option value="Innovation & Management im Tourismus">Innovation & Management im Tourismus</option>
+                        <option value="KMU-Management & Entrepreneurship">KMU-Management & Entrepreneurship</option>
+                        <option value="Orthoptik">Orthoptik</option>
+                        <option value="Physiotherapie">Physiotherapie</option>
+                        <option value="Radiologietechnologie">Radiologietechnologie</option>
+                        <option value="Smart Building">Smart Building</option>
+                        <option value="Soziale Arbeit">Soziale Arbeit</option>
+                        <option value="Wirtschaftsinformatik & Digitale Transformation">Wirtschaftsinformatik & Digitale Transformation</option>
+                        <option value="Applied Image and Signal Processing">Applied Image and Signal Processing</option>
+                        <option value="Holztechnologie & Holzwirtschaft">Holztechnologie & Holzwirtschaft</option>
+                        <option value="Suchmaschinenmarketing">Suchmaschinenmarketing</option>
                     </select>
                     <span>x</span>
                 </div>
