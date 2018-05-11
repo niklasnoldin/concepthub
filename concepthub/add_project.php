@@ -24,7 +24,7 @@ if($_POST['title']):
 
     $getidhandle = $dbh->prepare('SELECT "id" FROM courses WHERE name = ?');
 
-    foreach ($_POST[ineed] as $need) {
+    foreach ($_POST['ineed'] as $need) {
         
         $getidhandle->execute(array($need));
         $courseid = $getidhandle->fetch()->id;
@@ -48,11 +48,11 @@ else:
 <main>
     <section>
         <h2>Was schwebt dir vor</h2>
-        <form id="add_project_form" action="add_project.php" method="post">
+        <form id="add_project_form" enctype="multipart/form-data" action="add_project.php" method="post">
             <input type="text" placeholder="titel." name="title" autofocus required>
             <textarea name="description" rows="5" placeholder="kurzbeschreibung des projektes." required></textarea>
             <textarea name="long_desc" rows="10" placeholder="ausführliche beschreibung." required></textarea>
-            <fieldset>
+            <fieldset id="skills">
                 <legend>Welche Skills suchst du?</legend>
                 <div>
                     <select name="ineed[]" required>
@@ -81,7 +81,7 @@ else:
                     </select>
                     <span>x</span>
                 </div>
-                <p id="add_skill">+ skill hinzufügen</p>
+                <p id="add_skill">+ weitern skill hinzufügen</p>
             </fieldset>
             <fieldset>
                 <label class="radiobutton">
@@ -94,6 +94,14 @@ else:
                     <input type="radio" name="private" value="true">
                     <span></span>
                 </label>
+            </fieldset>
+            <fieldset>
+                <legend>Bilder</legend>
+                <div title="Bilderformular">
+                    <input type="file" name="picture[]" accept="image/jpeg, image/png">
+                    <span>x</span>
+                </div>
+                <p id="add_file">+ weiteres bild hinzufügen</p>
             </fieldset>
             <input type="submit" value="Woopie">
         </form>

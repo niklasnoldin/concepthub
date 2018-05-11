@@ -476,14 +476,15 @@ main input, textarea, fieldset, select{
 }
 
 main input[type="submit"], select{
-    width: 100%
+    width: 100%;
 }
+
 main input[type="submit"]{
     border: 0.2em solid yellowgreen;
 }
 
 
-#add_skill{
+#add_skill, #add_file{
     margin-left: 2em;
     font-size: 0.5em;
     color: grey;
@@ -503,6 +504,12 @@ main input[type="submit"]{
 #add_project_form select:hover ~ span,
 #add_project_form span:hover{
     color: orangered;
+}
+
+input[type="file"]{
+    width: calc(100% - 4em);
+    font-size: 0.5em;
+    border: none;
 }
 
 

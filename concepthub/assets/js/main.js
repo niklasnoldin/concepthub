@@ -6,7 +6,9 @@ function Ready(){
     HideRegister();
     ShowRegister();
     AddSkill();
-    delSkill();
+    DelSkill();
+    AddFile()
+    DelFile();
 
     $('#register input[name="password2"]').keyup(function(){
         let register_pass2 = $('#register input[name="password2"]').val();
@@ -48,19 +50,35 @@ function ShowRegister(){
     })
 }
 
-
 function AddSkill(){
     $('#add_skill').click(function(event){
         event.preventDefault();
-        $('#add_project_form fieldset div:first-of-type').clone().insertBefore(this);
-        delSkill();
+        $('#add_project_form #skills div:first-of-type').clone().insertBefore(this);
+        DelSkill();
+    })
+}
+function AddFile(){
+    $('#add_file').click(function(event){
+        event.preventDefault();
+        $('#add_project_form fieldset div[title="Bilderformular"]:first-of-type').clone().insertBefore(this);
+        DelFile();
+        console.log('Added new input-thingy');
     })
 }
 
-function delSkill(){
-    $('#add_project_form span').click(function(event){
+function DelSkill(){
+    $('#add_project_form #skills span').click(function(event){
         event.preventDefault();
-        if($('#add_project_form fieldset > div').length > 1){
+        if($('#add_project_form #skills > div').length > 1){
+            $(this).parent().remove();
+        }
+    })
+}
+function DelFile(){
+    $('#add_project_form div[title="Bilderformular"] span').click(function(event){
+        event.preventDefault();
+        console.log($('#add_project_form div[title="Bilderformular"]').length);
+        if($('#add_project_form div[title="Bilderformular"]').length > 1){
             $(this).parent().remove();
         }
     })
