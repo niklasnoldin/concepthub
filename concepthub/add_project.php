@@ -1,6 +1,5 @@
 <?php
 include "function.php";
-
 include "login_function.php";
 $pagetitle = "Konzept erstellen";
 

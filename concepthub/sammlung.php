@@ -70,9 +70,11 @@ foreach($concepts as $concept):
                 <h2>
                     <?=$concept->title?>
                 </h2>
+                <div>
                 <?php
                 if($concept->username == $_SESSION['user']) echo "<p>von $concept->firstname $concept->lastname</p>";
                 ?>
+                </div>
             </a>
         </li>
 <?php
