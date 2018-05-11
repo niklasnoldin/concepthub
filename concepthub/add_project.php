@@ -34,6 +34,23 @@ if($_POST['title']):
             $courseid
         ));
     }
+    $errormessage = "";
+
+    foreach($_FILES['picture']['name'] as $key => $name){
+        if($_FILES['picture']['error'][$key] == UPLOAD_ERR_OK){
+            $uploaddirectory = 'upload_files/';
+            $ext = pathinfo($_FILES['picture']['name'][$key]);
+            $ext = $ext['extension'];
+            if($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg'){
+                $filename = str_pad($insertid, 5, "0", STR_PAD_LEFT)."_".str_pad($key, 3, '0', STR_PAD_LEFT).'.'.$ext;
+                if(!move_uploaded_file($_FILES['picture']['tmp_name'][$key], $uploaddirectory.$filename)){
+                    $errormessage .= 'Dateiupload fehlgeschlagen.<br>';
+                }
+            } else {
+                $errormessage .= 'Nur .jpg, .png oder .jpeg Dateien erlaubt.';
+            }
+        }
+    }
 
     $url = 'Location: project.php?id='.$insertid;
     header($url);
@@ -48,6 +65,7 @@ else:
 <main>
     <section>
         <h2>Was schwebt dir vor</h2>
+        <?php if(!empty($errormessage)) echo "<p class='error_message'>".$errormessage."</p>";?>
         <form id="add_project_form" enctype="multipart/form-data" action="add_project.php" method="post">
             <input type="text" placeholder="titel." name="title" autofocus required>
             <textarea name="description" rows="5" placeholder="kurzbeschreibung des projektes." required></textarea>

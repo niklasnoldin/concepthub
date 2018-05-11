@@ -61,7 +61,10 @@ foreach($concepts as $concept):
             }
             if(!($concept->private)){
         ?>
-            " style="background-image: url(assets/img/<?=$concept->id;?>.jpg);"
+            " style="background-image: url(<?php
+            $tempfilename = str_pad($concept->id, 5,'0',STR_PAD_LEFT).'_000';
+            echo(glob("upload_files/$tempfilename.*")[0]);
+            ?>);"
             <?php };?>
             >
                 <h2>
