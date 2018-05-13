@@ -6,12 +6,14 @@ if(empty($_GET['id'])){
     header('Location: stoeber.php');
     exit;
 } else {
-    $concepthandle = $dbh->prepare("SELECT id, title, author, firstname, lastname, concepts.description as description, desc_short, creationdate 
+    $concepthandle = $dbh->prepare("SELECT count(likes.follower) as likecount, concepts.id, title, author, firstname, lastname, concepts.description as desc_long, desc_short, creationdate 
     FROM concepts 
     INNER JOIN users ON (author = username)
+    INNER JOIN likes ON (concepts.id = conceptid)
     WHERE (private = false
     OR author = ?)
-    AND id = ?");
+    AND id = ?
+    GROUP BY concepts.id, title, author, firstname, lastname, desc_long, desc_short, creationdate");
 
     $concepthandle->execute(array($_SESSION['user'], $_GET['id']));
     $concept = $concepthandle->Fetch();

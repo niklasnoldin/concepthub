@@ -3,7 +3,7 @@ include "function.php";
 include "login_function.php";
 $pagetitle = "Konzept erstellen";
 
-if($_POST['title']):
+if(!empty($_POST['title'])):
         
     $inserthandle = $dbh->prepare("INSERT INTO concepts(title, author, description, desc_short, creationdate, private) VALUES(?, ?, ?, ?, ?, ?) RETURNING id");
 
@@ -20,6 +20,8 @@ if($_POST['title']):
     $insertid = $inserthandle->fetch()->id;
 
     $needshandle = $dbh->prepare("INSERT INTO needsa(conceptid, courseid) VALUES(?,?)");
+    $likeshandle = $dbh->prepare("INSERT INTO likes(follower, conceptid) VALUES(?,?)");
+    $likeshandle->execute(array(null, $insertid));
 
     $getidhandle = $dbh->prepare('SELECT "id" FROM courses WHERE name = ?');
 
@@ -51,7 +53,7 @@ if($_POST['title']):
         }
     }
 
-    $url = 'Location: project.php?id='.$insertid;
+    $url = 'Location: concept.php?id='.$insertid;
     header($url);
     exit;
 endif;
