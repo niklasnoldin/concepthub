@@ -390,6 +390,7 @@ main{
     z-index: -11;
     padding-top: 6em;
 }
+
 main section{
     padding: 1em 0 0 0;
     display: flex;
@@ -400,12 +401,13 @@ main section{
     margin: 0 0 5em 0;
 }
 
-main div p{
+h3{
     font-style: italic;
     color: black;
     background-color: white;
     padding: 0 0.3em;
 }
+
 main ul li a{
     height: 45vh;
     background-color: white;
@@ -419,6 +421,15 @@ main ul li a{
     align-items: center;
     justify-content: center;
 
+    transition: background-size 2s;
+    -moz-transition: background-size 2s;
+    -ms-transition: background-size 2s;
+    -o-transition: background-size 2s;
+    -webkit-transition: background-size 2s;
+}
+ 
+main ul li a:hover{
+    background-size: 102%;
 }
 
 

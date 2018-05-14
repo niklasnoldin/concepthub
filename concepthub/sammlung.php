@@ -72,7 +72,7 @@ foreach($concepts as $concept):
                 </h2>
                 <div>
                 <?php
-                if($concept->username == $_SESSION['user']) echo "<p>von $concept->firstname $concept->lastname</p>";
+                if($concept->username == $_SESSION['user']) echo "<h3>von $concept->firstname $concept->lastname</h3>";
                 ?>
                 </div>
             </a>

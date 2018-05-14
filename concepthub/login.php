@@ -7,8 +7,8 @@
         <h2>Das Konzeptportal der Fachhochschule Salzburg</h2>
         <form id="login" action="index.php" method="post">
             <?php
-                if(!empty($errormessage_login)) echo "<p class='error_message'>".$errormessage_login."</p>";
-                if(!empty($_GET['error'])) echo "<p class='error_message'>".$_GET['error']."</p>";
+                if(!empty($errormessage_login)) echo "<h4 class='error_message'>".$errormessage_login."</h4>";
+                if(!empty($_GET['error'])) echo "<h4 class='error_message'>".$_GET['error']."</h4>";
             ?>
             <input type="text" name="user" placeholder="benutzername." required title="USER: user PASS: user">
             <input type="password" name="pass" placeholder="passwort." required title="USER: user PASS: user">

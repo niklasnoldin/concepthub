@@ -33,9 +33,10 @@ else:
             ?>)" alt="heropicture">
         </div>
         <h2><?=$concept->title?></h2>
-        <p>von <a href="person.php?user=<?=$concept->author?>"><?=$concept->firstname.' '.$concept->lastname;?></a></p>
+        <h3>von <a href="person.php?user=<?=$concept->author?>"><?=$concept->firstname.' '.$concept->lastname;?></a></h3>
     </div>
-
+    <p><?= $concept->desc_short ?></p>
+    <p><?= $concept->desc_long ?></p>
 
 
 </main>
