@@ -9,6 +9,10 @@ function Ready(){
     DelSkill();
     AddFile()
     DelFile();
+    let liked = {isit: false};
+    Like(liked);
+    SendFeedback();
+
 
     $('#register input[name="password2"]').keyup(function(){
         let register_pass2 = $('#register input[name="password2"]').val();
@@ -82,4 +86,37 @@ function DelFile(){
             $(this).parent().remove();
         }
     })
+}
+
+function Like(liked){
+    $('#clap.likeable').click(function(event){
+        if(!(liked.isit)){
+            event.preventDefault();
+            console.log(GetConceptId());
+            $.post( "assets/ajax/like_ajax.php", { id: GetConceptId() } ).done(function(){
+                console.log("Clap! Clap! Clap!");
+            }).fail(function(){
+                console.log("Broke my hands or something!");
+            });
+            let likes = parseInt($('#clap p').text());
+            $('#clap p').html(likes + 1);
+            console.log(liked.isit);
+            liked.isit = true;
+            $('#clap').addClass('liked');
+        }
+    });
+}
+
+function SendFeedback(){
+    $('#submit_feedback').click(function(event){
+        event.preventDefault();
+        $.post("assets/ajax/feedback_ajax.php", {id: GetConceptId(), data: $('#feedback').val(), stars: $('#stars').val() }).done(function(data){
+            console.log("Feedbacked." + data);
+        });
+        $(this).parent().addClass('invisible');
+    });
+}
+
+function GetConceptId(){
+    return window.location.search.substr(1).split('=')[1];
 }
