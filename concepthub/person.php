@@ -48,8 +48,7 @@ if(!empty($_GET['user'])){
 <main>
     <div class="hero">
         <div style="background-image:url(<?php
-            $tempfilename = str_pad($concept->id, 5,'0',STR_PAD_LEFT).'_000';
-            echo(glob("upload_files/$tempfilename.*")[0]);
+            echo(glob("upload_files/$user->username.*")[0]);
             ?>)" alt="heropicture">
         </div>
         <h2><?=$user->firstname." ".$user->lastname?></h2>
@@ -121,7 +120,8 @@ if(!empty($_GET['user'])){
         <?php
         foreach($everyone as $one){
             ?>
-            <li>
+            <li class="flex_container flex_row">
+                <img src="<?php echo glob("upload_files/$one->username.*")[0]?>" alt="" class="thumb">
                 <p>
                     <a href="person.php?user=<?=$one->username?>">
                     <?= $one->firstname." ".$one->lastname ?>

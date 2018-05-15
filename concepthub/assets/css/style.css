@@ -750,3 +750,8 @@ input[type="file"]{
     text-align: center;
     list-style: disc inside;
 }
+
+.thumb{
+    max-width: 4em;
+    max-height: 4em;
+}
