@@ -7,6 +7,7 @@ $errormessage_login = "";
 ini_set('display_errors', '1');
 error_reporting(E_ERROR | E_PARSE);
 date_default_timezone_set('Europe/Vienna');
+setlocale(LC_TIME, "de_DE");
 
 include "config.php";
 
