@@ -17,26 +17,38 @@ INNER JOIN
     concepts ON concepts.author = users.username OR likes.conceptid = concepts.id
 WHERE 
     users.username = ?
+GROUP BY 
+    concepts.id, 
+    users.username,
+    concepts.author,
+    concepts.title,
+    concepts.creationdate,
+    concepts.private
 ORDER BY 
-    concepts.creationdate;
+    concepts.creationdate
 ;");
+$getnames = $dbh->prepare("SELECT firstname, lastname FROM users WHERE username = ?");
 
 $concepthandle->execute(array($_SESSION['user']));
 
 $concepts = $concepthandle->fetchAll();
+
+
 ?>
 
 <main>
     <a id="add" href="add_project.php">+</a>
 <ul>
-
 <?php
-
 if($concepts):
 foreach($concepts as $concept):
+    $getnames->execute(array($concept->author));
+    $names = $getnames->Fetch();
+    $tempfilename = str_pad($concept->id, 5,'0',STR_PAD_LEFT).'_000';
+    $backgpic = glob("upload_files/$tempfilename.*")[0];
 ?>  
-        <li>
-            <a href="concept.php?id=<?=$concept->id?>" class="
+        <li class="samml_item">
+            <a href="concept.php?id=<?=$concept->id?>" class=" <?php if (empty($backgpic)) echo "circlepattern";?>
         <?php
             $random = rand(0,4);
             switch ($random) {
@@ -57,22 +69,23 @@ foreach($concepts as $concept):
                     break;
             }
             if($concept->private){
-                echo " locked \"";
+                echo " locked\"";
             }
             if(!($concept->private)){
         ?>
-            " style="background-image: url(<?php
-            $tempfilename = str_pad($concept->id, 5,'0',STR_PAD_LEFT).'_000';
-            echo(glob("upload_files/$tempfilename.*")[0]);
-            ?>);"
-            <?php };?>
+            " <?php
+            
+            if (!empty($backgpic)){
+                echo "style=\"background-image: url(".$backgpic."\"";
+            }
+            }?>
             >
                 <h2>
                     <?=$concept->title?>
                 </h2>
                 <div>
                 <?php
-                if($concept->username == $_SESSION['user']) echo "<h3>von $concept->firstname $concept->lastname</h3>";
+                if(!($concept->author == $_SESSION['user'])) echo "<h3>von $names->firstname $names->lastname</h3>";
                 ?>
                 </div>
             </a>

@@ -90,23 +90,24 @@ main a:hover{
 /* === STYLE CLASSES === */
 
 
-.circlepattern{
+.samml_item a.circlepattern{
     background-image: url(../img/circle.svg);
     background-size: 20px;
     background-position: -5px -5px;
+    background-blend-mode: hue;
 }
 
-.green_bg{background-color: aquamarine; }
+.samml_item .green_bg{background-color: aquamarine; }
 
-.blue_bg{background-color: aqua;}
+.samml_item .blue_bg{background-color: aqua;}
 
-.red_bg{background-color: coral; }
+.samml_item .red_bg{background-color: coral; }
 
-.orange_bg{background-color: darkorange;}
+.samml_item .orange_bg{background-color: darkorange;}
 
-.white_bg{background-color: antiquewhite;}
+.samml_item .white_bg{background-color: antiquewhite;}
 
-.locked{
+.samml_item .locked{
     background-image: url(../img/cross.svg);
     background-size: 20px;
     background-position: -5px -5px;
@@ -440,7 +441,7 @@ h3{
     padding: 0 0.3em;
 }
 
-main ul li a{
+.samml_item a{
     height: 45vh;
     background-color: white;
     background-blend-mode: luminosity;
@@ -452,16 +453,15 @@ main ul li a{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    transition: background-size 2s;
-    -moz-transition: background-size 2s;
-    -ms-transition: background-size 2s;
-    -o-transition: background-size 2s;
-    -webkit-transition: background-size 2s;
 }
- 
-main ul li a:hover{
-    background-size: 102%;
+
+.samml_item a h2, .samml_item a h3{
+    position: relative;
+    top: 0;
+    transition: top 1s;
+}
+.samml_item a:hover h2, .samml_item:hover a h3{
+    top: -0.25em;
 }
 
 
@@ -663,8 +663,8 @@ input[type="file"]{
 .liked p {
     color: darkseagreen;
 }
-.liked{
-    cursor: initial;
+#clap.liked{
+    cursor: unset;
 }
 
 #submit_feedback{
@@ -704,4 +704,28 @@ input[type="file"]{
     margin: 0 0.5em 0 -1em;
     background-image: url(../img/edit.svg);
     background-size: contain;
+}
+
+.feedback{
+    width: 100%;
+    max-width: 42em;
+    list-style: none;
+}
+
+.feedback li{
+    padding: 2em;
+    margin: 0 1em 1em 1em;
+    /*border: 0.4em solid gold;*/
+    border-radius: 0.5em;
+    background-image: linear-gradient(
+        to top right,
+        #f0ed50,
+        #f1ef56,
+        #fffd7a,
+        #f8f683,
+        #f0ed50
+    )
+}
+.feedback p{
+    padding: 0.2em 0;
 }

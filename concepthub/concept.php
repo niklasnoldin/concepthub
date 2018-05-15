@@ -45,7 +45,7 @@ else:
     </div>
     <section class="flex_container flex_row">
 
-    <div id="clap" class="flex_container flex_row 
+    <div id="clap" class="flex_container flex_row
     <?php
         if(empty($didhelike)){ echo "likeable"; } else { echo "liked"; }
     ?>
@@ -74,6 +74,29 @@ else:
         <input type="range" min="0" max="5" step="1" required id="stars">
         <input type="submit" value="senden" id="submit_feedback">
     </form>
+    </section>
+    <section class="flex_container">
+    <ul class="feedback">
+    <?php 
+        if($concept->author == $_SESSION['user']){
+            $feedbackgetter = $dbh->prepare("SELECT data, stars, feedbacker, creationdate FROM feedback WHERE conceptid = ?");
+            $feedbackgetter->execute(array(
+                $_GET['id']
+            ));
+            $feed = $feedbackgetter->FetchAll();
+            foreach($feed as $f){
+                ?>
+                <li>
+                    <a href="person.php?user=<?= $f->feedbacker?>"><?=$f->feedbacker?></a>
+                    <p>
+                    <?php for($i = 0; $i < $f->stars; $i++) echo "★" ?>
+                    </p>
+                    <p><?= $f->data ?></p>
+                </li>
+                <?php
+            }
+        }?>
+        </ul>
     </section>
 </main>
 <?php

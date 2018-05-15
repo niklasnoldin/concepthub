@@ -24,7 +24,7 @@
                 <legend>geschlecht.</legend>
             <label class="radiobutton">
                 weiblich.
-                <input type="radio" name="isfemale" value="true">
+                <input type="radio" name="isfemale" value="true" <?php ?>>
                 <span></span>
             </label>
             <label class="radiobutton">
@@ -34,7 +34,7 @@
             </label>
             <label class="radiobutton">
                 anderes.
-                <input type="radio" name="isfemale" value="null" selected>
+                <input type="radio" name="isfemale" value="null" >
                 <span></span>
             </label>
             </fieldset>
