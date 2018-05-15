@@ -26,7 +26,8 @@ if(!empty($_GET['user'])){
     );
     $projecthandle = $dbh->prepare("SELECT
         title,
-        id
+        id,
+        private
         FROM concepts
         WHERE author = ?
         ORDER BY creationdate
@@ -82,7 +83,24 @@ if(!empty($_GET['user'])){
         <?php if (!empty($user->linkedin)){?>
         <p><em>LinkedIn:</em> <a href="https://www.linkedin.com/in/<?=$user->linkedin?>" target="_blank"><?= "@".$user->linkedin ?></a></p>
         <?php }?>
-        <p><em>Mitglied seit: </em> <?= strftime("%A, den %d %B %Y", strtotime($user->membersince))?></p>
+        <p><em>Mitglied seit: </em> <?= strftime("%A, den %d. %B %Y", strtotime($user->membersince))?></p>
+    </section>
+
+    <section class="flex_container">
+        <h2><?= $user->firstname?>'s Projekte</h2>
+        <ul class="flex_container">
+        <?php 
+            foreach($projects as $project){
+                if(!($project->private)){
+        ?>
+                <li class="big_item">
+                    <a href="concept.php?id=<?=$project->id?>"><?=$project->title?></a>
+                </li>
+        <?php
+                }
+            }
+        ?>
+        </ul>
     </section>
     
 </main>
@@ -125,3 +143,4 @@ if(!empty($_GET['user'])){
 <?php
 endif;
 include "footer.php";
+?>
