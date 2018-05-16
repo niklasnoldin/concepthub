@@ -756,3 +756,7 @@ input[type="file"]{
     max-width: 4em;
     max-height: 4em;
 }
+
+.user_taken{
+    border: 0.2em solid red;
+}

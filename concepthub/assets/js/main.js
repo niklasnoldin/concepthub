@@ -93,8 +93,8 @@ function Like(liked){
     $('#clap.likeable').click(function(event){
         if(!(liked.isit)){
             event.preventDefault();
-            console.log(GetConceptId());
-            $.post( "assets/ajax/like_ajax.php", { id: GetConceptId() } ).done(function(){
+            console.log(GetFirstParameter());
+            $.post( "assets/ajax/like_ajax.php", { id: GetFirstParameter() } ).done(function(){
                 console.log("Clap! Clap! Clap!");
             }).fail(function(){
                 console.log("Broke my hands or something!");
@@ -111,23 +111,30 @@ function Like(liked){
 function SendFeedback(){
     $('#submit_feedback').click(function(event){
         event.preventDefault();
-        $.post("assets/ajax/feedback_ajax.php", {id: GetConceptId(), data: $('#feedback').val(), stars: $('#stars').val() }).done(function(data){
+        $.post("assets/ajax/feedback_ajax.php", {id: GetFirstParameter(), data: $('#feedback').val(), stars: $('#stars').val() }).done(function(data){
             console.log("Feedbacked." + data);
         });
         $(this).parent().addClass('invisible');
     });
 }
 
-function GetConceptId(){
+function GetFirstParameter(){
     return window.location.search.substr(1).split('=')[1];
 }
 
 function CheckValidUsername(){
     $('#usernameInput').keyup(function(){
         let curr_val = $(this).val();
-        $.post("assets/ajax/checkuser_ajax.php", {val: curr_val}).done(function(data){
+        console.log(GetFirstParameter());
+        $.post("assets/ajax/checkuser_ajax.php", {val: curr_val, name: GetFirstParameter()}).done(function(data){
             console.log(data + " " + curr_val);
-            if(data == "true") $('#submitButton').attr('disabled', 'disabled');
+            if(data == "true") {
+                $('#submitButton').attr('disabled', 'disabled');
+                $('#usernameInput').addClass('user_taken');
+            } else {
+                $('#submitButton').removeAttr('disabled');
+                $('#usernameInput').removeClass('user_taken');
+            }
         })
     });
 }
