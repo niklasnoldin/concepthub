@@ -127,8 +127,7 @@ function CheckValidUsername(){
         let curr_val = $(this).val();
         console.log(GetFirstParameter());
         $.post("assets/ajax/checkuser_ajax.php", {val: curr_val, name: GetFirstParameter()}).done(function(data){
-            console.log(data + " " + curr_val);
-            if(data == "true") {
+            if(data == "true" || RegExp(/\s/).test(curr_val)) {
                 $('#submitButton').attr('disabled', 'disabled');
                 $('#usernameInput').addClass('user_taken');
             } else {

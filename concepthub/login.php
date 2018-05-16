@@ -18,7 +18,7 @@
         <form id="register" action="index.php" method="post">
             <input type="text" name="firstname" placeholder="vorname."  required>
             <input type="text" name="lastname" placeholder="nachname." required>
-            <input type="text" name="username" placeholder="benutzername." required>
+            <input type="text" name="username" placeholder="benutzername." id="usernameInput" required>
 
             <fieldset>
                 <legend>geschlecht.</legend>
@@ -42,7 +42,7 @@
             <input type="password" name="password" placeholder="passwort." required>
             <input type="password" name="password2" placeholder="wiederholen." required>
             <input type="mail" name="mail" placeholder="email." required>
-            <input type="submit" value="let's go.">
+            <input type="submit" value="let's go." id="submitButton">
         </form>
     </section>
 </main>
