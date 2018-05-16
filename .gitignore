@@ -1,5 +1,7 @@
 *.ai
 *.pdf
+*.jpg
+*.jpeg
 *.svg
 *.png
 *.ico
