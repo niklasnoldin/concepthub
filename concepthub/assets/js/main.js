@@ -12,6 +12,7 @@ function Ready(){
     let liked = {isit: false};
     Like(liked);
     SendFeedback();
+    CheckValidUsername();
 
 
     $('#register input[name="password2"]').keyup(function(){
@@ -119,4 +120,14 @@ function SendFeedback(){
 
 function GetConceptId(){
     return window.location.search.substr(1).split('=')[1];
+}
+
+function CheckValidUsername(){
+    $('#usernameInput').keyup(function(){
+        let curr_val = $(this).val();
+        $.post("assets/ajax/checkuser_ajax.php", {val: curr_val}).done(function(data){
+            console.log(data + " " + curr_val);
+            if(data == "true") $('#submitButton').attr('disabled', 'disabled');
+        })
+    });
 }

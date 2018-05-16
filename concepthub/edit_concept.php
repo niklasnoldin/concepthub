@@ -48,9 +48,24 @@ if(empty($_GET['id'])){
                 $courseid = $getidhandle->fetch()->id;
 
                 $needsupdater2->execute(array(
-                    $_GET['id'], 
+                    $_GET['id'],
                     $courseid
                 ));
+            }
+            foreach($_FILES['picture']['name'] as $key => $name){
+                if($_FILES['picture']['error'][$key] == UPLOAD_ERR_OK){
+                    $uploaddirectory = 'upload_files/';
+                    $ext = pathinfo($_FILES['picture']['name'][$key]);
+                    $ext = $ext['extension'];
+                    if($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg'){
+                        $filename = str_pad($_GET['id'], 5, "0", STR_PAD_LEFT)."_".str_pad($key, 3, '0', STR_PAD_LEFT).'.'.$ext;
+                        if(!move_uploaded_file($_FILES['picture']['tmp_name'][$key], $uploaddirectory.$filename)){
+                            $errormessage .= 'Dateiupload fehlgeschlagen.<br>';
+                        }
+                    } else {
+                        $errormessage .= 'Nur .jpg, .png oder .jpeg Dateien erlaubt.';
+                    }
+                }
             }
             header("Location: concept.php?id=".$_GET['id']);
             exit;
@@ -116,6 +131,7 @@ if(empty($_GET['id'])){
             <fieldset>
                 <legend>Bilder</legend>
                 <h3 class="error_message">Derzeit ist das Löschen von Bildern nicht möglich.</h3>
+                <h3 class="error_message">Durch erneuten Upload werden alte Daten überschrieben.</h3>
                 <div title="Bilderformular">
                     <input type="file" name="picture[]" accept="image/jpeg, image/png">
                     <span>x</span>

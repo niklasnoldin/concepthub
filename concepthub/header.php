@@ -46,6 +46,7 @@
                 <a href="index.php"><li>sammlung</li></a>
                 <a href="stoeber.php"><li>stöbern</li></a>
                 <a href="person.php?user=<?=$_SESSION['user'] ?>"><li>mein Konto</li></a>
+                <a href="person.php?>"><li>Personen</li></a>
                 <a href="logout.php"><li>logout</li></a>
             </ul>
         </nav>

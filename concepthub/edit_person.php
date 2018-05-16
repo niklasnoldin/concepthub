@@ -5,6 +5,70 @@ include "login_function.php";
 if(empty($_SESSION['user'])): include "login.php";
 else:
 
+if(!empty($_POST['newuser'])){
+    $uploaddirectory = 'upload_files/';
+    $getidhandle = $dbh->prepare('SELECT "id" FROM courses WHERE name = ?');
+    $updater = $dbh->prepare("UPDATE users SET 
+        username = ?, 
+        email = ?, 
+        firstname = ?, 
+        lastname = ?, 
+        description = ?, 
+        course = ?, 
+        phone = ?,
+        facebook = ?,
+        skype = ?,
+        linkedin = ?
+        WHERE username = ?");
+        $getidhandle->execute(array($_POST['course']));
+        $courseid = $getidhandle->Fetch();
+
+
+    $updater->execute(array(
+        $_POST['newuser'],
+        $_POST['email'],
+        $_POST['firstname'],
+        $_POST['lastname'],
+        $_POST['description'],
+        $courseid->id,
+        $_POST['phone'],
+        $_POST['facebook'],
+        $_POST['skype'],
+        $_POST['linkedin'],
+        $_GET['user']
+    ));
+    $_SESSION['user'] = $_POST['newuser'];
+    if($_GET['user'] != $_POST['newuser']){
+        $oldpic = glob($uploaddirectory.$_GET['user'].".*")[0];
+
+        $oldext = pathinfo($oldpic);
+        $oldext = $oldext['extension'];
+
+        rename(glob($uploaddirectory.$_GET['user'].".*")[0], $uploaddirectory.$_POST['newuser'].".".$oldext);
+    } 
+
+    if($_FILES['picture']['error'] == UPLOAD_ERR_OK){
+        $ext = pathinfo($_FILES['picture']['name']);
+        $ext = $ext['extension'];
+
+        if($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg'){
+
+            $filename = $_POST['newuser'].'.'.$ext;
+
+            if(!move_uploaded_file($_FILES['picture']['tmp_name'], $uploaddirectory.$filename)){
+                $errormessage .= 'Dateiupload fehlgeschlagen.<br>';
+            } else {
+                if($_GET['user'] != $_POST['newuser']){
+                    $todelete = glob($uploaddirectory.$_GET['user'].".*")[0];
+                    if($todelete) unlink($todelete);
+                } 
+            }
+        } else {
+            $errormessage .= 'Nur .jpg, .png oder .jpeg Dateien erlaubt.';
+        }
+    } 
+}
+
 if(!($_GET['user'] == $_SESSION['user']) || empty($_GET['user'])){
     header("Location: person.php?user=".$_SESSION['user']);
     exit;
@@ -37,21 +101,23 @@ if(!($_GET['user'] == $_SESSION['user']) || empty($_GET['user'])){
     $pathtoprofilepic = glob($smthpath)[0];
 
 $pagetitle = "Profil";
-
+echo $errormessage;
 include "header.php";
+
 ?>
 <main>
     <section class="flex_container">
         <h2>Dein Profil bearbeiten</h2>
-        <form action="edit_person.php" enctype="multipart/form-data">
+        <p><a href="person.php?user=<?=$_GET['user']?>">zurück zum Profil</a></p>
+        <form action="edit_person.php?user=<?=$_GET['user']?>"" method="post" enctype="multipart/form-data">
             <fieldset>
                 <?php if ($pathtoprofilepic){?>
                     <img class="thumb" src="<?= $pathtoprofilepic?>" alt="profilbild">
                 <?php } ?>
                 <legend>Profilbild</legend>
-                <input type="file" name="picture">
+                <input type="file" name="picture" accept="image/jpeg, image/png">
             </fieldset>
-            <input type="text" placeholder="username" name="username" value="<?=$user->username?>" required>
+            <input type="text" placeholder="username" id="usernameInput" name="newuser" value="<?=$user->username?>" required>
             <input type="text" placeholder="e-mail" name="email" value="<?=$user->email?>" required>
             <input type="text" placeholder="vorname" name="firstname" value="<?=$user->firstname?>" required>
             <input type="text" placeholder="nachname" name="lastname" value="<?=$user->lastname?>" required>
@@ -88,7 +154,7 @@ include "header.php";
             <input type="text" name="skype" placeholder="Skype Username" value="<?=$user->skype?>">
             <label for="linkedin">LinkedIn Username</label>
             <input type="text" name="linkedin" placeholder="LinkedIn Username" value="<?=$user->linkedin?>">
-            <input type="submit" value="update">
+            <input type="submit" value="update" id="submitButton">
         </form>
     </section>
 </main>
