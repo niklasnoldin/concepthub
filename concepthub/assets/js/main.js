@@ -18,8 +18,14 @@ function Ready(){
     $('#register input[name="password2"]').keyup(function(){
         let register_pass2 = $('#register input[name="password2"]').val();
         let register_pass = $('#register input[name="password"]').val();
-        if (register_pass != register_pass2) $('#register input[name="password2"]').addClass('invalid_pass');
-        else $('#register input[name="password2"]').removeClass('invalid_pass');
+        if (register_pass != register_pass2) {
+            $('#register input[name="password2"]').addClass('invalid_pass');
+            $('#submitButton').attr('disabled', 'disabled');
+        } else{
+            $('#register input[name="password2"]').removeClass('invalid_pass');
+            $('#submitButton').RemoveAttr('disabled');
+        } 
+
     })
     
 }

@@ -45,8 +45,10 @@ foreach($concepts as $concept):
     $getnames->execute(array($concept->author));
     $names = $getnames->Fetch();
     $tempfilename = str_pad($concept->id, 5,'0',STR_PAD_LEFT).'_000';
-    $backgpic = glob("upload_files/$tempfilename.*")[0];
-?>  
+    $filename = glob("upload_files/$tempfilename.*");
+    if(!empty($filename)) $backgpic = $filename[0];
+    else $backgpic = "";
+?>
         <li class="samml_item">
             <a href="concept.php?id=<?=$concept->id?>" class=" <?php if (empty($backgpic)) echo "circlepattern";?>
         <?php
