@@ -140,6 +140,7 @@ if(empty($_GET['id'])){
             </fieldset>
             <input type="submit" value="Update">
         </form>
+        <button id="delete_button">Konzept löschen.</button>
     </section>
 
 </main>

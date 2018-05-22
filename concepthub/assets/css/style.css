@@ -658,6 +658,12 @@ input[type="file"]{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-image: linear-gradient(
+        to top right,
+        rgb(242, 255, 172),
+        rgb(172, 245, 255),
+        rgb(255, 205, 238)
+    )
 }
 .hero h2, .hero h3{
     position: relative;
@@ -823,3 +829,11 @@ input[type="file"]{
     )
 }
 
+
+#delete_button{
+    color: red;
+    margin-top: 5em;
+    text-decoration: underline;
+    background: none;
+    cursor: pointer;
+}
