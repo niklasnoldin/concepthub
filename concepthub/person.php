@@ -116,7 +116,7 @@ if(!empty($_GET['user'])){
     ?>
 <main class="flex_container person_list"> 
     <h2>Alle Personen</h2>
-    <ul class="">
+    <ul>
         <?php
         foreach($everyone as $one){
             ?>

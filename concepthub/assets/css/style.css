@@ -87,6 +87,13 @@ main a:hover{
     color: crimson;
 }
 
+.container{
+    border: 0.4em solid lightseagreen;
+    border-radius: 0.25em;
+    padding: 1em;
+    margin: 2em 0;
+}
+
 /* === STYLE CLASSES === */
 
 
@@ -637,7 +644,6 @@ input[type="file"]{
     background-position: top;
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
 }
 .hero{
     height: calc(100vh - 6em);

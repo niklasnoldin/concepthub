@@ -23,11 +23,9 @@ function Ready(){
             $('#submitButton').attr('disabled', 'disabled');
         } else{
             $('#register input[name="password2"]').removeClass('invalid_pass');
-            $('#submitButton').RemoveAttr('disabled');
-        } 
-
+            $('#submitButton').removeAttr('disabled');
+        }
     })
-    
 }
 
 function Toggle_nav(){
