@@ -1,3 +1,9 @@
+// Multimedia Projekt 1
+// Multimedia Technology
+// Fachhochschule Salzburg
+// Niklas Clemens Noldin
+// fhs41321
+
 window.onload = Ready;
 
 let iterate_concept = {i: 1, max: 1, end: false};

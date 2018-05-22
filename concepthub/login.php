@@ -1,3 +1,11 @@
+<!-- 
+Multimedia Projekt 1
+Multimedia Technology
+Fachhochschule Salzburg
+Niklas Clemens Noldin
+fhs41321
+-->
+
 <main>
     <section id="login_screen">
         <a href="https://www.fh-salzburg.ac.at/">

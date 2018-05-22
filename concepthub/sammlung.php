@@ -1,3 +1,11 @@
+<!-- 
+Multimedia Projekt 1
+Multimedia Technology
+Fachhochschule Salzburg
+Niklas Clemens Noldin
+fhs41321
+-->
+
 <?php
 
 $concepthandle = $dbh->prepare("SELECT 

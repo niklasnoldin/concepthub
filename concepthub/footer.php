@@ -1,3 +1,11 @@
+<!-- 
+Multimedia Projekt 1
+Multimedia Technology
+Fachhochschule Salzburg
+Niklas Clemens Noldin
+fhs41321
+-->
+
 <footer>
 
     <p>Der Concepthub ist im Rahmen des Multimedia-Projektes 1 des <a href="https://multimediatechnology.at/"> Studiengangs Multimedia Technology</a> an der <a href="https://www.fh-salzburg.ac.at/">Fachhochschule Salzburg</a> von Niklas Noldin konzipiert und umgesetzt worden.</p>

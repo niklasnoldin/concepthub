@@ -1,3 +1,9 @@
+-- Multimedia Projekt 1
+-- Multimedia Technology
+-- Fachhochschule Salzburg
+-- Niklas Clemens Noldin
+-- fhs41321
+
 DROP TABLE IF EXISTS assets;
 DROP TABLE IF EXISTS feedback;
 DROP TABLE IF EXISTS follows;
