@@ -10,11 +10,11 @@ $concepthandle = $dbh->prepare("SELECT concepts.id, title, author, firstname, la
     WHERE private = false
     GROUP BY concepts.id, title, author, firstname, lastname, desc_short, creationdate
     ORDER BY creationdate DESC
-    LIMIT 10
-    ");
+    LIMIT 1 OFFSET 0
+");
 
 $concepthandle->execute();
-$concepts = $concepthandle->FetchAll();
+$concept = $concepthandle->Fetch();
 
 $needsahandle = $dbh->prepare("SELECT courses.name, courses.id FROM needsa INNER JOIN courses ON(courses.id = courseid) WHERE conceptid = ? LIMIT 3");
 
@@ -26,9 +26,11 @@ else:
 ?>
 <main class="flex_container gradient">
 
-<ul>
+<img src="assets/img/arrow.svg" alt="arrow_right" id="arrow_right">
+<img src="assets/img/arrow.svg" alt="arrow_left" id="arrow_left">
+
+<ul id="stoeber_list">
     <?php
-    foreach ($concepts as $concept){
         $needsahandle->execute(array($concept->id));
         $needs = $needsahandle->FetchAll();
 
@@ -38,7 +40,7 @@ else:
         else $backgpic = "";
 
         ?>
-        <li class="stoeber_item">
+        <li class="stoeber_item curr_concept">
             <div class="<?php 
             if (empty($backgpic)) echo "circlepattern ";
             $random = rand(0,4);
@@ -85,16 +87,8 @@ else:
                 </p>
             </a>
         </li>
-
-
-        <?php
-    }
-    ?>
 </ul>
-
 </main>
-
-
 <?php
 endif;
 include "footer.php";

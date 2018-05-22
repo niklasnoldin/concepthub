@@ -173,7 +173,7 @@ footer p {
 
 header{
     position: absolute;
-    z-index: 2;
+    z-index: 3;
 }
 header section{
     background-color: white;
@@ -809,6 +809,7 @@ input[type="file"]{
     border-radius: 1em;
     margin: 2em;
     box-shadow: 1em 1em 1em rgb(51, 138, 138);
+    transition: left 0.75s ease-out, transform 0.75s ease-out;
 }
 
 .stoeber_item p {
@@ -881,4 +882,53 @@ input[type="file"]{
       opacity: 0; 
       transform: translate(-25%,35%) rotate(90deg);
     }
+}
+
+
+#arrow_left{
+    transform: rotate(180deg);
+    position: absolute;
+    top: 5vh;
+    left: 1em;
+    padding: 45vh 0;
+    cursor: pointer;
+    width: 3em;
+    transition: filter 0.2s;
+    z-index: 2;
+}
+#arrow_right{
+    position: absolute;
+    top: 5vh;
+    right: 1em;
+    padding: 45vh 0;
+    cursor: pointer;
+    width: 3em;
+    transition: filter 0.2s;
+    z-index: 2;
+}
+#arrow_right:hover, #arrow_left:hover{
+    filter: drop-shadow(10px 0px 0px #FFFFFF);
+}
+
+.hidden_concept_right{
+    position: absolute;
+    left: 150vw;
+    top: 6em;
+    transform: translateX(-50%);
+    transition: left 0.75s ease-out, transform 0.75s ease-out;
+}
+.hidden_concept_left{
+    position: absolute;
+    left: -100vw;
+    top: 6em;
+    transform: translateX(-50%);
+    transition: left 0.75s ease-out, transform 0.75s ease-out;
+}
+
+.curr_concept{
+    position: absolute;
+    left: 50vw;
+    top: 6em;
+    z-index: 1;
+    transform: translateX(-65%);
 }

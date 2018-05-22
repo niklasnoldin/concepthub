@@ -1,19 +1,23 @@
 window.onload = Ready;
 
+let iterate_concept = {i: 1, max: 1};
+
 function Ready(){
+    let liked = {isit: false};
+    
+
     Toggle_nav();
-    //setProjectsWidth();
     HideRegister();
     ShowRegister();
     AddSkill();
     DelSkill();
     AddFile()
     DelFile();
-    let liked = {isit: false};
     Like(liked);
     SendFeedback();
     CheckValidUsername();
     DeleteConcept();
+    ConceptChanger();
 
 
     $('#register input[name="password2"]').keyup(function(){
@@ -155,4 +159,60 @@ function DeleteConcept(){
             }
         }
     });
+}
+
+function ConceptChanger(){
+    $(document).keypress(function(e){
+        if(e.keyCode == 39) GetNewConcept();
+        else if(e.keyCode == 37) GetOldConcept();
+    })
+
+    $('#arrow_right').click(GetNewConcept);
+    $('#arrow_left').click(GetOldConcept);
+
+
+}
+
+function GetNewConcept(){
+    iterate_concept.i++;
+
+    $('.curr_concept').addClass('hidden_concept_left');
+    $('.curr_concept').removeClass('curr_concept');
+
+    console.log(iterate_concept.i);
+
+    if(iterate_concept.i < iterate_concept.max){
+        console.log(iterate_concept.i+" < "+iterate_concept.max);
+        let selector = "#stoeber_list > li:nth-child("+(iterate_concept.i)+")";
+        $(selector).addClass('curr_concept');
+        $(selector).removeClass('hidden_concept_right');
+    }else{
+        console.log(iterate_concept.i+" >= "+iterate_concept.max);
+        iterate_concept.max = iterate_concept.i;
+        $.get("assets/ajax/getconcept_ajax.php", {i: iterate_concept.max - 1 }).done(function(data){
+            $('#stoeber_list').append(data);
+            let selector = "#stoeber_list > li:nth-child("+(iterate_concept.i)+")";
+            setTimeout(() => {
+                $(selector).addClass('curr_concept');
+                $(selector).removeClass('hidden_concept_right');
+            }, 50);
+        })
+    }
+}
+
+function GetOldConcept(){
+    
+    if(iterate_concept.i > 1){
+        iterate_concept.i--;
+        $('.curr_concept').addClass('hidden_concept_right');
+        $('.curr_concept').removeClass('curr_concept');
+        console.log(iterate_concept.i);
+        
+        
+        let selector = "#stoeber_list > li:nth-child("+(iterate_concept.i)+")";
+        setTimeout(() => {
+            $(selector).addClass('curr_concept');
+            $(selector).removeClass('hidden_concept_left');
+        }, 50);
+    }
 }
