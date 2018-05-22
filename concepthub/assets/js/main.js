@@ -13,6 +13,7 @@ function Ready(){
     Like(liked);
     SendFeedback();
     CheckValidUsername();
+    DeleteConcept();
 
 
     $('#register input[name="password2"]').keyup(function(){
@@ -139,5 +140,19 @@ function CheckValidUsername(){
                 $('#usernameInput').removeClass('user_taken');
             }
         })
+    });
+}
+
+function DeleteConcept(){
+    $('#delete_button').click(function(){
+        let concept = GetFirstParameter();
+        if(confirm("Willst du wirklich das Konzept löschen?")){
+            if(confirm("Sicher? Es war so cool.")){
+                $.post("assets/ajax/deleteconcept_ajax.php", {id: GetFirstParameter()}).done(function(data){
+                    console.log(data);
+                    window.location = "index.php";
+                })
+            }
+        }
     });
 }

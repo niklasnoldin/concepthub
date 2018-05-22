@@ -682,6 +682,9 @@ input[type="file"]{
 #clap svg{
     max-width: 4em;
 }
+#clap svg path{
+    max-width: 4em;
+}
 
 .liked p {
     color: darkseagreen;
@@ -769,12 +772,15 @@ input[type="file"]{
 .big_item{
     font-size: 2em;
     text-align: center;
-    list-style: disc inside;
+    list-style: url(../img/arrow.svg) inside;
+    margin: 0.5em 0;
+    padding: 1em;
 }
 
 .thumb{
     max-width: 4em;
     max-height: 4em;
+    border-radius: 100%;
 }
 
 .user_taken{
@@ -829,7 +835,6 @@ input[type="file"]{
     )
 }
 
-
 #delete_button{
     color: red;
     margin-top: 5em;
@@ -837,3 +842,4 @@ input[type="file"]{
     background: none;
     cursor: pointer;
 }
+

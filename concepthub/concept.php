@@ -77,7 +77,7 @@ else:
     </section>
     <section class="flex_container">
     <ul class="feedback">
-    <?php 
+    <?php
         if($concept->author == $_SESSION['user']){
             $feedbackgetter = $dbh->prepare("SELECT data, stars, feedbacker, creationdate FROM feedback WHERE conceptid = ?");
             $feedbackgetter->execute(array(
