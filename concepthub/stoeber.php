@@ -16,10 +16,9 @@ $concepthandle = $dbh->prepare("SELECT concepts.id, title, author, firstname, la
 $concepthandle->execute();
 $concepts = $concepthandle->FetchAll();
 
-
 $needsahandle = $dbh->prepare("SELECT courses.name, courses.id FROM needsa INNER JOIN courses ON(courses.id = courseid) WHERE conceptid = ? LIMIT 3");
 
-$pagetitle = "stoebern";
+$pagetitle = "stöbern";
 include "header.php";
 
 if (empty($_SESSION['user'])): include "login.php";

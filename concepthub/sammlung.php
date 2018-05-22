@@ -25,7 +25,7 @@ GROUP BY
     concepts.creationdate,
     concepts.private
 ORDER BY 
-    concepts.creationdate
+    concepts.creationdate DESC
 ;");
 $getnames = $dbh->prepare("SELECT firstname, lastname FROM users WHERE username = ?");
 
