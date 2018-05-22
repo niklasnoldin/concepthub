@@ -15,6 +15,8 @@ $concepthandle = $dbh->prepare("SELECT concepts.id, title, author, firstname, la
 $concepthandle->execute(array($_GET['i']));
 $concept = $concepthandle->Fetch();
 
+if($concept):
+
 $needsahandle = $dbh->prepare("SELECT courses.name, courses.id FROM needsa INNER JOIN courses ON(courses.id = courseid) WHERE conceptid = ? LIMIT 3");
 
 
@@ -51,7 +53,7 @@ else $backgpic = "";
     }?> hero"
     <?php 
         if (!empty($backgpic)){
-        echo "style=\"background-image: url(".$backgpic."\"";
+        echo "style=\"background-image: url(".substr($backgpic, 6)."\"";
     }
     ?>
     >
@@ -76,6 +78,8 @@ else $backgpic = "";
     </a>
 </li>
 <?php
-
+else:
+    echo "Keine Konzepte mehr vorhanden.";
+endif;
 
 ?>
