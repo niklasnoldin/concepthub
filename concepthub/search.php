@@ -12,10 +12,11 @@ $searchhandle = $dbh->prepare("
 UNION ALL 
 (SELECT '2', title, author, desc_short, id
     FROM concepts 
-    WHERE lower(title) LIKE lower(?) 
+    WHERE (lower(title) LIKE lower(?) 
         OR lower(author) LIKE lower(?) 
-        OR lower(desc_short) LIKE lower(?) 
+        OR lower(desc_short) LIKE lower(?)
         OR lower(description) LIKE lower(?))
+        AND private = false)
 UNION ALL 
 (SELECT '3', courses.name AS coursename, universities.name AS uniname, adress, courses.id
     FROM courses
