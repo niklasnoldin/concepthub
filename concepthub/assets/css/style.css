@@ -843,3 +843,29 @@ input[type="file"]{
     cursor: pointer;
 }
 
+.scroll_arrow{
+    font-size: 3em;
+    position: absolute;
+    top: 80vh;
+    left: 50%;
+    z-index: 1;
+    animation: scroll_loop 2s infinite;
+  }
+
+
+@keyframes scroll_loop {
+    0% {
+      opacity: 0; 
+      transform: translate(-25%,-35%) rotate(90deg);
+    }
+    30% {
+      opacity: 100;
+    }
+    70% {
+      opacity: 100;
+    }
+    100% {
+      opacity: 0; 
+      transform: translate(-25%,35%) rotate(90deg);
+    }
+}

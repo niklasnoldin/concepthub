@@ -30,6 +30,7 @@ else:
 <main>
     <div class="hero">
         <h2><?=$course->course;?></h2>
+        <img src="assets/img/arrow.svg" alt="scroll_arrow" class="scroll_arrow">
     </div>
     <section>
         <p><?=$course->uni?></p>

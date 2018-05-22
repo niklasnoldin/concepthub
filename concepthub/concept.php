@@ -39,6 +39,7 @@ else:
             $tempfilename = str_pad($concept->id, 5,'0',STR_PAD_LEFT).'_000';
             echo(glob("upload_files/$tempfilename.*")[0]);
             ?>)" alt="heropicture">
+            <img src="assets/img/arrow.svg" alt="scroll_arrow" class="scroll_arrow">
         </div>
         <h2><?=$concept->title?></h2>
         <h3>von <a href="person.php?user=<?=$concept->author?>"><?=$concept->firstname.' '.$concept->lastname;?></a></h3>
