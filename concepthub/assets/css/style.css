@@ -96,6 +96,16 @@ main a:hover{
 
 /* === STYLE CLASSES === */
 
+footer{
+    font-size: 0.5em;
+    background: rgb(27, 27, 27);
+    color: rgb(107, 107, 107);
+    padding: 3em 0 ;
+}
+footer p {
+    width: unset;
+    max-width: unset;
+}
 
 .samml_item a.circlepattern{
     background-image: url(../img/circle.svg);
@@ -441,6 +451,7 @@ main{
     /* background: lightblue; */
     /* border: 5px black solid; */
     padding-top: 6em;
+    min-height: calc(100vh - 6em);
 }
 
 main section{
