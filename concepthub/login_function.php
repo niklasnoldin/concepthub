@@ -29,16 +29,16 @@
 
         try{
             $createhandle->execute(array(
-                $_POST['username'],
-                $_POST['mail'],
-                $_POST['firstname'],
-                $_POST['lastname'],
+                htmlspecialchars($_POST['username']),
+                htmlspecialchars($_POST['mail']),
+                htmlspecialchars($_POST['firstname']),
+                htmlspecialchars($_POST['lastname']),
                 password_hash($_POST['password'], PASSWORD_BCRYPT,array("cost" => 10)),
-                $isfemale,
+                htmlspecialchars($isfemale),
                 date(DATE_RFC822)
             ));
 
-            $likeshandle->execute(array($_POST['username'], null));
+            $likeshandle->execute(array(htmlspecialchars($_POST['username']), null));
         } catch (PDOException $e){
             header("Location: index.php?error=Es%20ist%20etwas%20schiefgelaufen.<br>Hast%20du%20eventuell%20schon%20ein%20Konto?");
             exit;

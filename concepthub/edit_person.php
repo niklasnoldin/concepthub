@@ -25,17 +25,17 @@ if(!empty($_POST['newuser'])){
 
 
     $updater->execute(array(
-        $_POST['newuser'],
-        $_POST['email'],
-        $_POST['firstname'],
-        $_POST['lastname'],
-        $_POST['description'],
-        $courseid->id,
-        $_POST['phone'],
-        $_POST['facebook'],
-        $_POST['skype'],
-        $_POST['linkedin'],
-        $_GET['user']
+        htmlspecialchars($_POST['newuser']),
+        htmlspecialchars($_POST['email']),
+        htmlspecialchars($_POST['firstname']),
+        htmlspecialchars($_POST['lastname']),
+        htmlspecialchars($_POST['description']),
+        htmlspecialchars($courseid->id),
+        htmlspecialchars($_POST['phone']),
+        htmlspecialchars($_POST['facebook']),
+        htmlspecialchars($_POST['skype']),
+        htmlspecialchars($_POST['linkedin']),
+        htmlspecialchars($_GET['user'])
     ));
     $_SESSION['user'] = $_POST['newuser'];
     if($_GET['user'] != $_POST['newuser']){
@@ -44,7 +44,7 @@ if(!empty($_POST['newuser'])){
         $oldext = pathinfo($oldpic);
         $oldext = $oldext['extension'];
 
-        rename(glob($uploaddirectory.$_GET['user'].".*")[0], $uploaddirectory.$_POST['newuser'].".".$oldext);
+        rename(glob($uploaddirectory.$_GET['user'].".*")[0], $uploaddirectory.htmlspecialchars($_POST['newuser']).".".$oldext);
     } 
 
     if($_FILES['picture']['error'] == UPLOAD_ERR_OK){

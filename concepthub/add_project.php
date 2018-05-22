@@ -9,13 +9,14 @@ if(!empty($_POST['title'])):
 
 
     $inserthandle->execute(array(
-        $_POST['title'],
-        $_SESSION['user'],
-        $_POST['long_desc'],
-        $_POST['description'],
+        htmlspecialchars($_POST['title']),
+        htmlspecialchars($_SESSION['user']),
+        htmlspecialchars($_POST['long_desc']),
+        htmlspecialchars($_POST['description']),
         date(DATE_RFC822),
-        $_POST['private']
+        htmlspecialchars($_POST['private'])
     ));
+    
 
     $insertid = $inserthandle->fetch()->id;
 

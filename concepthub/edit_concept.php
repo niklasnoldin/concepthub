@@ -33,11 +33,11 @@ if(empty($_GET['id'])){
             $getidhandle = $dbh->prepare('SELECT "id" FROM courses WHERE name = ?');
 
             $updater->execute(array(
-                $_POST['title'],
-                $_POST['long_desc'],
-                $_POST['description'],
-                $_POST['private'],
-                $_GET['id']
+                htmlspecialchars($_POST['title']),
+                htmlspecialchars($_POST['long_desc']),
+                htmlspecialchars($_POST['description']),
+                htmlspecialchars($_POST['private']),
+                htmlspecialchars($_GET['id'])
             ));
             $needsupdater1->execute(array(
                 $_GET['id']

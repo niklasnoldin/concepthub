@@ -163,7 +163,7 @@ main a:hover{
 
 header{
     position: absolute;
-    z-index: 1;
+    z-index: 2;
 }
 header section{
     background-color: white;
@@ -844,13 +844,15 @@ input[type="file"]{
 }
 
 .scroll_arrow{
-    font-size: 3em;
     position: absolute;
     top: 80vh;
     left: 50%;
     z-index: 1;
     animation: scroll_loop 2s infinite;
+    filter: drop-shadow(10px 0px 0px #FFFFFF);
+    -webkit-filter: drop-shadow(10px 0px 0px #FFFFFF);
   }
+
 
 
 @keyframes scroll_loop {
