@@ -210,14 +210,11 @@ function GetNewConcept(){
 }
 
 function GetOldConcept(){
-    
     if(iterate_concept.i > 1){
         iterate_concept.i--;
         $('.curr_concept').addClass('hidden_concept_right');
         $('.curr_concept').removeClass('curr_concept');
         console.log(iterate_concept.i);
-        
-        
         let selector = "#stoeber_list > li:nth-child("+(iterate_concept.i)+")";
         setTimeout(() => {
             $(selector).addClass('curr_concept');
