@@ -11,7 +11,6 @@ let iterate_concept = {i: 1, max: 1, end: false};
 function Ready(){
     let liked = {isit: false};
     
-
     Toggle_nav();
     HideRegister();
     ShowRegister();
@@ -24,7 +23,6 @@ function Ready(){
     CheckValidUsername();
     DeleteConcept();
     ConceptChanger();
-
 
     $('#register input[name="password2"]').keyup(function(){
         let register_pass2 = $('#register input[name="password2"]').val();
