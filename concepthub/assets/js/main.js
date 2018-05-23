@@ -190,7 +190,8 @@ function GetNewConcept(){
     }else{
         console.log(iterate_concept.i+" >= "+iterate_concept.max);
         iterate_concept.max = iterate_concept.i;
-        $.get("assets/ajax/getconcept_ajax.php", {i: iterate_concept.max - 1 }).done(function(data){
+        $.get("assets/ajax/getconcept_ajax.php", {i: iterate_concept.max - 1 })
+        .done(function(data){
             if(data != "Keine Konzepte mehr vorhanden."){
                 $('#stoeber_list').append(data);
                 let selector = "#stoeber_list > li:nth-child("+(iterate_concept.i)+")";
