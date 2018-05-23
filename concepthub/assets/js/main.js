@@ -179,12 +179,9 @@ function ConceptChanger(){
 
 function GetNewConcept(){
     iterate_concept.i++;
-
     $('.curr_concept').addClass('hidden_concept_left');
     $('.curr_concept').removeClass('curr_concept');
-
     console.log(iterate_concept.i);
-
     if(iterate_concept.i < iterate_concept.max){
         console.log(iterate_concept.i+" < "+iterate_concept.max);
         let selector = "#stoeber_list > li:nth-child("+(iterate_concept.i)+")";
