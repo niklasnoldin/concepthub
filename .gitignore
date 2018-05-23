@@ -1,10 +1,5 @@
-*.ai
-*.pdf
 *.jpg
 *.jpeg
-*.svg
-*.png
-*.ico
 *.pages
 .DS_Store
 .idea
