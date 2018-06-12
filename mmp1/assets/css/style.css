@@ -938,3 +938,10 @@ input[type="file"]{
     z-index: 1;
     transform: translateX(-65%);
 }
+
+
+#logo_main{
+    width: 5em;
+    position: relative;
+    left: 5.5em;
+}
