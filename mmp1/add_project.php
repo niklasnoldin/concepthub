@@ -19,12 +19,12 @@ if(!empty($_POST['title'])):
 
 
     $inserthandle->execute(array(
-        htmlspecialchars($_POST['title']),
-        htmlspecialchars($_SESSION['user']),
-        htmlspecialchars($_POST['long_desc']),
-        htmlspecialchars($_POST['description']),
+        $_POST['title'],
+        $_SESSION['user'],
+        $_POST['long_desc'],
+        $_POST['description'],
         date(DATE_RFC822),
-        htmlspecialchars($_POST['private'])
+        $_POST['private']
     ));
     
 
@@ -77,7 +77,7 @@ else:
 <main>
     <section>
         <h2>Was schwebt dir vor</h2>
-        <?php if(!empty($errormessage)) echo "<p class='error_message'>".$errormessage."</p>";?>
+        <?php if(!empty($errormessage)) echo "<p class='error_message'>".htmlspecialchars($errormessage)."</p>";?>
         <form id="add_project_form" enctype="multipart/form-data" action="add_project.php" method="post">
             <input type="text" placeholder="titel." name="title" autofocus required>
             <textarea name="description" rows="5" placeholder="kurzbeschreibung des projektes." required></textarea>

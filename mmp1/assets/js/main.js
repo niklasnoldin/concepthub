@@ -10,6 +10,7 @@ let iterate_concept = {i: 1, max: 1, end: false};
 
 function Ready(){
     let liked = {isit: false};
+    animate();
     
     Toggle_nav();
     HideRegister();

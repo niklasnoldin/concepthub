@@ -51,8 +51,8 @@ include "header.php";
 ?>
 <main class="flex_container person_list">
 <form action="search.php" method="get">
-    <input type="search" name="search" placeholder="Search" value="<?=$_GET['search']?>">
-    <input type="submit" value=" " id="submit_search">
+    <input type="search" name="search" placeholder="Search" value="<?=htmlspecialchars($_GET['search'])?>">
+    <input type="submit" value=" " id="submit_search_main">
 </form>
 
 <ul>
@@ -65,12 +65,11 @@ foreach($result as $item):
         case '1':
             ?>
             <li class="flex_container flex_row">
-                <img src="<?php echo glob("upload_files/$item->username_title_adress.*")[0]?>" alt="" class="thumb">
+                <img src="<?php echo glob(htmlspecialchars("upload_files/$item->username_title_adress.*"))[0]?>" alt="" class="thumb">
                 <p>
-                    <a href="person.php?user=<?=$item->username_title_adress?>">
-                    <?= $item->firstname_desc_coursename." ".$item->lastname_author_university?>
+                    <a href="person.php?user=<?=htmlspecialchars($item->username_title_adress)?>">
+                    <?= htmlspecialchars($item->firstname_desc_coursename." ".$item->lastname_author_university)?>
                     </a>
-                </p>
             </li>
             <?php
             break;
@@ -78,10 +77,10 @@ foreach($result as $item):
             ?>
             <li class="flex_container container">
                 <p>
-                <a href="concept.php?id=<?=$item->id?>"><em><?= $item->firstname_desc_coursename?></em></a>
-                <h3><a href="person.php?user=<?=$item->lastname_author_university?>"><?=$item->lastname_author_university?></a></h3>
-                <?= $item->username_title_adress?>
-                </p>
+                <a href="concept.php?id=<?=htmlspecialchars($item->id)?>"><em><?=htmlspecialchars($item->firstname_desc_coursename)?></em></a>
+                <h3><a href="person.php?user=<?=htmlspecialchars($item->lastname_author_university)?>"><?=htmlspecialchars($item->lastname_author_university)?></a></h3>
+                <?= htmlspecialchars($item->username_title_adress)?>
+                
             </li>
             <?php
             break;
@@ -89,13 +88,13 @@ foreach($result as $item):
             ?>
             <li class="flex_container container">
                 <p>
-                    <h3><a href="course.php?id=<?=$item->id?>"><?=$item->firstname_desc_coursename?></a></h3>
+                    <h3><a href="course.php?id=<?=htmlspecialchars($item->id)?>"><?=htmlspecialchars($item->firstname_desc_coursename)?></a></h3>
                     <h3>
-                    <?=$item->lastname_author_university?>
+                    <?=htmlspecialchars($item->lastname_author_university)?>
                     </h3>
-                    <?=$item->username_title_adress?>
+                    <?=htmlspecialchars($item->username_title_adress)?>
                     
-                </p>
+                
             </li>
             <?php
             break;
@@ -103,7 +102,6 @@ foreach($result as $item):
             break;
     }
 ?>
-</li>
 <?php
 endforeach;
 ?>

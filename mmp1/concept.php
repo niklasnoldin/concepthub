@@ -45,11 +45,11 @@ else:
         <div style="background-image:url(<?php
             $tempfilename = str_pad($concept->id, 5,'0',STR_PAD_LEFT).'_000';
             echo(glob("upload_files/$tempfilename.*")[0]);
-            ?>)" alt="heropicture">
+            ?>)">
             <img src="assets/img/arrow.svg" alt="scroll_arrow" class="scroll_arrow">
         </div>
         <h2><?=$concept->title?></h2>
-        <h3>von <a href="person.php?user=<?=$concept->author?>"><?=$concept->firstname.' '.$concept->lastname;?></a></h3>
+        <h3>von <a href="person.php?user=<?=htmlspecialchars($concept->author)?>"><?=htmlspecialchars($concept->firstname.' '.$concept->lastname);?></a></h3>
     </div>
     <section class="flex_container flex_row">
 
@@ -64,14 +64,14 @@ else:
     
     <div class="flex_container">
         <?php if($concept->author == $_SESSION['user']) echo "<a id='edit_button' class='fullwidth' href='edit_concept.php?id=$concept->id'>bearbeiten</a>"; ?>
-        <p><?= $concept->desc_short ?></p>
-        <p><?= $concept->desc_long ?></p>
+        <p><?= htmlspecialchars($concept->desc_short) ?></p>
+        <p><?= htmlspecialchars($concept->desc_long) ?></p>
         <div id="needs_list" class="fullwidth">
-            <p><em><?=$concept->firstname?> braucht für sein Projekt:</em></p>
+            <p><em><?=htmlspecialchars($concept->firstname)?> braucht für sein Projekt:</em></p>
             <ul>
             <?php
             foreach($needs as $need){
-                echo "<a href=\"course.php?id=$need->id\"><li>$need->name</li></a>";
+                echo "<li><a href=\"course.php?id=$need->id\">".htmlspecialchars($need->name)."</a></li>";
             }
             ?>
             </ul>
@@ -79,7 +79,7 @@ else:
     </div>
     <form id="feedback_form">
         <input type="text" placeholder="feedback" title="nur der autor des concepts kann diese nachricht sehen." id="feedback" required>
-        <input type="range" min="0" max="5" step="1" required id="stars">
+        <input type="range" min="0" max="5" step="1" id="stars">
         <input type="submit" value="senden" id="submit_feedback">
     </form>
     </section>
@@ -95,11 +95,11 @@ else:
             foreach($feed as $f){
                 ?>
                 <li>
-                    <a href="person.php?user=<?= $f->feedbacker?>"><?=$f->feedbacker?></a>
+                    <a href="person.php?user=<?= htmlspecialchars($f->feedbacker)?>"><?=htmlspecialchars($f->feedbacker)?></a>
                     <p>
                     <?php for($i = 0; $i < $f->stars; $i++) echo "★" ?>
                     </p>
-                    <p><?= $f->data ?></p>
+                    <p><?= htmlspecialchars($f->data) ?></p>
                 </li>
                 <?php
             }

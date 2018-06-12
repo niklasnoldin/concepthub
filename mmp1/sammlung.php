@@ -56,7 +56,7 @@ foreach($concepts as $concept):
     else $backgpic = "";
 ?>
         <li class="samml_item">
-            <a href="concept.php?id=<?=$concept->id?>" class=" <?php if (empty($backgpic)) echo "circlepattern";?>
+            <a href="concept.php?id=<?=$concept->id?>" class="<?php if (empty($backgpic)) echo "circlepattern";?>
         <?php
             $random = rand(0,4);
             switch ($random) {
@@ -84,16 +84,16 @@ foreach($concepts as $concept):
             " <?php
             
             if (!empty($backgpic)){
-                echo "style=\"background-image: url(".$backgpic."\"";
+                echo "style=\"background-image: url(".$backgpic.")\"";
             }
             }?>
             >
                 <h2>
-                    <?=$concept->title?>
+                    <?=htmlspecialchars($concept->title)?>
                 </h2>
                 <div>
                 <?php
-                if(!($concept->author == $_SESSION['user'])) echo "<h3>von $names->firstname $names->lastname</h3>";
+                if(!($concept->author == $_SESSION['user'])) echo "<h3>von ".htmlspecialchars($names->firstname." ".$names->lastname)."</h3>";
                 ?>
                 </div>
             </a>

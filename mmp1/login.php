@@ -18,7 +18,7 @@
         <form id="login" action="index.php" method="post">
             <?php
                 if(!empty($errormessage_login)) echo "<h4 class='error_message'>".$errormessage_login."</h4>";
-                if(!empty($_GET['error'])) echo "<h4 class='error_message'>".$_GET['error']."</h4>";
+                if(!empty($_GET['error'])) echo "<h4 class='error_message'>".htmlspecialchars($_GET['error'])."</h4>";
             ?>
             <input type="text" name="user" placeholder="benutzername." required title="USER: user PASS: user">
             <input type="password" name="pass" placeholder="passwort." required title="USER: user PASS: user">
@@ -34,7 +34,7 @@
                 <legend>geschlecht.</legend>
             <label class="radiobutton">
                 weiblich.
-                <input type="radio" name="isfemale" value="true" <?php ?>>
+                <input type="radio" name="isfemale" value="true">
                 <span></span>
             </label>
             <label class="radiobutton">

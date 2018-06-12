@@ -40,11 +40,11 @@ if(empty($_GET['id'])){
             $getidhandle = $dbh->prepare('SELECT "id" FROM courses WHERE name = ?');
 
             $updater->execute(array(
-                htmlspecialchars($_POST['title']),
-                htmlspecialchars($_POST['long_desc']),
-                htmlspecialchars($_POST['description']),
-                htmlspecialchars($_POST['private']),
-                htmlspecialchars($_GET['id'])
+                $_POST['title'],
+                $_POST['long_desc'],
+                $_POST['description'],
+                $_POST['private'],
+                $_GET['id']
             ));
             $needsupdater1->execute(array(
                 $_GET['id']
@@ -83,11 +83,11 @@ if(empty($_GET['id'])){
 <main>
 <section>
         <h2>Projekt bearbeiten</h2>
-        <?php if(!empty($errormessage)) echo "<p class='error_message'>".$errormessage."</p>";?>
+        <?php if(!empty($errormessage)) echo "<p class='error_message'>".htmlspecialchars($errormessage)."</p>";?>
         <form id="add_project_form" enctype="multipart/form-data" action="edit_concept.php?id=<?= $_GET['id']?>" method="post">
-            <input type="text" value="<?=$concept->title?>" name="title" autofocus required>
-            <textarea name="description" rows="5" required><?=$concept->desc_short?></textarea>
-            <textarea name="long_desc" rows="10" required><?=$concept->desc_long?></textarea>
+            <input type="text" value="<?=htmlspecialchars($concept->title)?>" name="title" autofocus required>
+            <textarea name="description" rows="5" required><?=htmlspecialchars($concept->desc_short)?></textarea>
+            <textarea name="long_desc" rows="10" required><?=htmlspecialchars($concept->desc_long)?></textarea>
             <fieldset id="skills">
                 <legend>Welche Skills suchst du?</legend>
                 <?php 

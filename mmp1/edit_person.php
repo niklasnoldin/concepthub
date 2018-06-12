@@ -32,17 +32,17 @@ if(!empty($_POST['newuser'])){
 
 
     $updater->execute(array(
-        htmlspecialchars($_POST['newuser']),
-        htmlspecialchars($_POST['email']),
-        htmlspecialchars($_POST['firstname']),
-        htmlspecialchars($_POST['lastname']),
-        htmlspecialchars($_POST['description']),
-        htmlspecialchars($courseid->id),
-        htmlspecialchars($_POST['phone']),
-        htmlspecialchars($_POST['facebook']),
-        htmlspecialchars($_POST['skype']),
-        htmlspecialchars($_POST['linkedin']),
-        htmlspecialchars($_GET['user'])
+        $_POST['newuser'],
+        $_POST['email'],
+        $_POST['firstname'],
+        $_POST['lastname'],
+        $_POST['description'],
+        $courseid->id,
+        $_POST['phone'],
+        $_POST['facebook'],
+        $_POST['skype'],
+        $_POST['linkedin'],
+        $_GET['user']
     ));
     $_SESSION['user'] = $_POST['newuser'];
     if($_GET['user'] != $_POST['newuser']){
@@ -119,16 +119,16 @@ include "header.php";
         <form action="edit_person.php?user=<?=$_GET['user']?>"" method="post" enctype="multipart/form-data">
             <fieldset>
                 <?php if ($pathtoprofilepic){?>
-                    <img class="thumb" src="<?= $pathtoprofilepic?>" alt="profilbild">
+                    <img class="thumb" src="<?= htmlspecialchars($pathtoprofilepic)?>" alt="profilbild">
                 <?php } ?>
                 <legend>Profilbild</legend>
                 <input type="file" name="picture" accept="image/jpeg, image/png">
             </fieldset>
-            <input type="text" placeholder="username" id="usernameInput" name="newuser" value="<?=$user->username?>" required>
-            <input type="text" placeholder="e-mail" name="email" value="<?=$user->email?>" required>
-            <input type="text" placeholder="vorname" name="firstname" value="<?=$user->firstname?>" required>
-            <input type="text" placeholder="nachname" name="lastname" value="<?=$user->lastname?>" required>
-            <textarea name="description" rows="5" placeholder="erzähl etwas über dich."><?=$user->description?></textarea>
+            <input type="text" placeholder="username" id="usernameInput" name="newuser" value="<?=htmlspecialchars($user->username)?>" required>
+            <input type="text" placeholder="e-mail" name="email" value="<?=htmlspecialchars($user->email)?>" required>
+            <input type="text" placeholder="vorname" name="firstname" value="<?=htmlspecialchars($user->firstname)?>" required>
+            <input type="text" placeholder="nachname" name="lastname" value="<?=htmlspecialchars($user->lastname)?>" required>
+            <textarea name="description" rows="5" placeholder="erzähl etwas über dich."><?=htmlspecialchars($user->description)?></textarea>
             <select name="course" required>
                 <option value="default" disabled >Studiengang</option>
                 <option value="Multimedia Technology" <?php if($user->name == "Multimedia Technology") echo "selected" ?>>Multimedia Technology</option>
@@ -154,13 +154,13 @@ include "header.php";
                 <option value="Suchmaschinenmarketing" <?php if($user->name == "Suchmaschinenmarketing") echo "selected" ?>>Suchmaschinenmarketing</option>
             </select>
             <label for="phone">Telefonnummer</label>
-            <input type="tel" name="phone" placeholder="Telefonnummer" value="<?=$user->phone?>">
+            <input type="tel" name="phone" placeholder="Telefonnummer" value="<?=htmlspecialchars($user->phone)?>">
             <label for="facebook">Facebook Username</label>
-            <input type="text" name="facebook" placeholder="Facebook Username" value="<?=$user->facebook?>">
+            <input type="text" name="facebook" placeholder="Facebook Username" value="<?=htmlspecialchars($user->facebook)?>">
             <label for="skype">Skype Username</label>
-            <input type="text" name="skype" placeholder="Skype Username" value="<?=$user->skype?>">
+            <input type="text" name="skype" placeholder="Skype Username" value="<?=htmlspecialchars($user->skype)?>">
             <label for="linkedin">LinkedIn Username</label>
-            <input type="text" name="linkedin" placeholder="LinkedIn Username" value="<?=$user->linkedin?>">
+            <input type="text" name="linkedin" placeholder="LinkedIn Username" value="<?=htmlspecialchars($user->linkedin)?>">
             <input type="submit" value="update" id="submitButton">
         </form>
     </section>
