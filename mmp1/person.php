@@ -1,12 +1,11 @@
-<!-- 
-Multimedia Projekt 1
-Multimedia Technology
-Fachhochschule Salzburg
-Niklas Clemens Noldin
-fhs41321
--->
-
 <?php
+
+// Multimedia Projekt 1
+// Multimedia Technology
+// Fachhochschule Salzburg
+// Niklas Clemens Noldin
+// fhs41321
+
 include "function.php";
 include "login_function.php";
 
@@ -56,10 +55,10 @@ if(!empty($_GET['user'])){
 <main>
     <div class="hero">
         <div style="background-image:url(<?php
-            echo(glob("upload_files/$user->username.*")[0]);
-            ?>)" alt="heropicture">
+            echo(htmlspecialchars(glob("upload_files/$user->username.*")[0]));
+            ?>)">
         </div>
-        <h2><?=$user->firstname." ".$user->lastname?></h2>
+        <h2><?=htmlspecialchars($user->firstname." ".$user->lastname)?></h2>
         <img src="assets/img/arrow.svg" alt="scroll_arrow" class="scroll_arrow">
     </div>
 
@@ -69,26 +68,24 @@ if(!empty($_GET['user'])){
         <a id="edit_button" href="edit_person.php?user=<?= $_GET['user'];?>">bearbeiten</a>
     <?php
     } ?>
-        <?php if(!empty($user->description)) echo "<p>".$user->description."</p>";
+        <?php if(!empty($user->description)) echo "<p>".htmlspecialchars($user->description)."</p>";
         ?>
-    </section>
-    <section class="flex_container">
         <h2>Steckbrief</h2>
-        <p><em>E-Mail:</em> <a href="mailto:<?=$user->email?>"><?= $user->email?></a></p>
+        <p><em>E-Mail:</em> <a href="mailto:<?=htmlspecialchars($user->email)?>"><?= htmlspecialchars($user->email)?></a></p>
         <?php if (!empty($user->course)){?>
-        <p><em>Studiengang:</em> <a href="course.php?id=<?=$user->course?>"><?= $user->name?></a></p>
+        <p><em>Studiengang:</em> <a href="course.php?id=<?=htmlspecialchars($user->course)?>"><?= htmlspecialchars($user->name)?></a></p>
         <?php }?>
         <?php if (!empty($user->phone)){?>
-        <p><em>Telefonnummer:</em> <a href="tel:<?=$user->phone?>"><?= $user->phone?></a></p>
+        <p><em>Telefonnummer:</em> <a href="tel:<?=htmlspecialchars(str_replace(' ', '',$user->phone))?>"><?= htmlspecialchars($user->phone)?></a></p>
         <?php }?>
         <?php if (!empty($user->facebook)){?>
-        <p><em>Facebook:</em> <a href="https://www.facebook.com/<?=$user->facebook?>" target='_blank'><?= $user->firstname." ".$user->lastname ?></a></p>
+        <p><em>Facebook:</em> <a href="https://www.facebook.com/<?=htmlspecialchars($user->facebook)?>" target='_blank'><?= htmlspecialchars($user->firstname." ".$user->lastname) ?></a></p>
         <?php }?>
         <?php if (!empty($user->skype)){?>
-        <p><em>Skype:</em> <a href="skype:<?=$user->skype?>?call"><?= "@".$user->skype?></a></p>
+        <p><em>Skype:</em> <a href="skype:<?=htmlspecialchars($user->skype)?>?call"><?= "@".htmlspecialchars($user->skype)?></a></p>
         <?php }?>
         <?php if (!empty($user->linkedin)){?>
-        <p><em>LinkedIn:</em> <a href="https://www.linkedin.com/in/<?=$user->linkedin?>" target="_blank"><?= "@".$user->linkedin ?></a></p>
+        <p><em>LinkedIn:</em> <a href="https://www.linkedin.com/in/<?=htmlspecialchars($user->linkedin)?>" target="_blank"><?= htmlspecialchars("@".$user->linkedin) ?></a></p>
         <?php }?>
         <p><em>Mitglied seit: </em> <?= strftime("%A, den %d. %B %Y", strtotime($user->membersince))?></p>
     </section>
@@ -101,7 +98,7 @@ if(!empty($_GET['user'])){
                 if(!($project->private)){
         ?>
                 <li class="big_item">
-                    <a href="concept.php?id=<?=$project->id?>"><?=$project->title?></a>
+                    <a href="concept.php?id=<?=htmlspecialchars($project->id)?>"><?=htmlspecialchars($project->title)?></a>
                 </li>
         <?php
                 }
@@ -128,10 +125,11 @@ if(!empty($_GET['user'])){
         foreach($everyone as $one){
             ?>
             <li class="flex_container flex_row">
-                <img src="<?php echo glob("upload_files/$one->username.*")[0]?>" alt="" class="thumb">
+                <?php $profilepicture = glob("upload_files/$one->username.*")[0];
+                if($profilepicture) echo "<img src=".htmlspecialchars($profilepicture)." alt=\"$one->username\" class=\"thumb\">"?>
                 <p>
-                    <a href="person.php?user=<?=$one->username?>">
-                    <?= $one->firstname." ".$one->lastname ?>
+                    <a href="person.php?user=<?=htmlspecialchars($one->username)?>">
+                    <?= htmlspecialchars($one->firstname." ".$one->lastname) ?>
                     </a>
                 </p>
             </li>

@@ -35,7 +35,7 @@ h1, h2, h3, input, fieldset, legend, fieldset{
 h1{
     position: absolute;
     left: 20vw;
-    margin-top: 0.2em;
+    margin-top: -1.5em;
     text-transform: lowercase;
 }
 
@@ -348,8 +348,8 @@ header section{
     position: fixed;
     top: 2.2em;
     left: 1.2em;
-    width: 6em;
-    height: 6em;
+    width: 4em;
+    height: 4em;
     background: transparent;
     border: none;
     z-index: 900;
@@ -386,6 +386,7 @@ header nav ul a{
     font-weight: bold;
     margin: 0.25em;
     color: white;
+    display: block;
 
     width: 60vw;
     text-align: left;
@@ -394,15 +395,15 @@ header nav ul a{
     transition: color 0.25s;
 }
 
-header nav ul a li::after{
+header nav a::after{
     content: ".";
 }
 
-header nav ul a:last-of-type{
+header nav ul li:last-of-type a{
     color: orangered;
 }
 
-header nav ul a:last-of-type::before{
+header nav ul li:last-of-type a::before{
     content: "";
     display: block;
     margin: 0.35em 0em 0em;
@@ -439,7 +440,7 @@ header nav ul a:hover{
     color: white;
 }
 
-#submit_search{
+#submit_search, #submit_search_main{
     width: 2em;
     border: none;
     padding: 0.5em 1em 0.5em 1em;
@@ -623,7 +624,7 @@ input[type="file"]{
 }
 
 .logo_fh{
-    margin-top: -3.5em;
+    
     width: 15em;
     min-width: 30vw;
 }
@@ -937,4 +938,19 @@ input[type="file"]{
     top: 6em;
     z-index: 1;
     transform: translateX(-65%);
+}
+
+
+#logo_main{
+    width: 5em;
+    position: relative;
+    left: 5.5em;
+
+    will-change: opacity;
+    transition: opacity 0.5s;
+}
+@media (max-width: 950px){
+    #logo_main{
+        opacity: 0;
+    }
 }

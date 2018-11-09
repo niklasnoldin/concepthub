@@ -1,12 +1,11 @@
-<!-- 
-Multimedia Projekt 1
-Multimedia Technology
-Fachhochschule Salzburg
-Niklas Clemens Noldin
-fhs41321
--->
-
 <?php
+
+// Multimedia Projekt 1
+// Multimedia Technology
+// Fachhochschule Salzburg
+// Niklas Clemens Noldin
+// fhs41321
+
 include "function.php";
 include "login_function.php";
 
@@ -51,8 +50,8 @@ else:
             foreach($projects as $project){
         ?>
                 <li class="big_item flex_container">
-                    <a href="concept.php?id=<?=$project->id?>"><?=$project->title?></a>
-                    <a class="positive_message" href="person.php?user=<?=$project->author?>"><?=$project->author?></a>
+                    <a href="concept.php?id=<?=$project->id?>"><?=htmlspecialchars($project->title)?></a>
+                    <a class="positive_message" href="person.php?user=<?=htmlspecialchars($project->author)?>"><?=htmlspecialchars($project->author)?></a>
                 </li>
         <?php
             }

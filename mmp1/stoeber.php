@@ -1,12 +1,11 @@
-<!-- 
-Multimedia Projekt 1
-Multimedia Technology
-Fachhochschule Salzburg
-Niklas Clemens Noldin
-fhs41321
--->
-
 <?php
+
+// Multimedia Projekt 1
+// Multimedia Technology
+// Fachhochschule Salzburg
+// Niklas Clemens Noldin
+// fhs41321
+
 include "function.php";
 include "login_function.php";
 
@@ -32,6 +31,8 @@ include "header.php";
 if (empty($_SESSION['user'])): include "login.php";
 else:
 ?>
+
+
 <main class="flex_container gradient">
 
 <img src="assets/img/arrow.svg" alt="arrow_right" id="arrow_right">
@@ -71,28 +72,27 @@ else:
             }?> hero"
             <?php 
                 if (!empty($backgpic)){
-                echo "style=\"background-image: url(".$backgpic."\"";
+                echo "style=\"background-image: url(".htmlspecialchars($backgpic)."\"";
             }
             ?>
             >
-                <h2><a href="concept.php?id=<?=$concept->id?>"><?=$concept->title?></a></h2>
-                <h3><a href="person.php?user=<?=$concept->author?>">von <?=$concept->firstname." ".$concept->lastname?></a></h3>
+                <h2><a href="concept.php?id=<?=htmlspecialchars($concept->id)?>"><?=htmlspecialchars($concept->title)?></a></h2>
+                <h3><a href="person.php?user=<?=htmlspecialchars($concept->author)?>">von <?=htmlspecialchars($concept->firstname." ".$concept->lastname)?></a></h3>
             </div>
-            <a href="concept.php?id=<?=$concept->id?>">
+            <a href="concept.php?id=<?=htmlspecialchars($concept->id)?>">
             <p>
-            <?= $concept->desc_short?>
+            <?=htmlspecialchars($concept->desc_short)?>
             
             <div id="needs_list">
-                <p><em><?=$concept->firstname?> braucht für sein Projekt:</em></p>
+                <p><em><?=htmlspecialchars($concept->firstname)?> braucht für sein Projekt:</em></p>
                 <ul>
                     <?php
                     foreach($needs as $need){
-                        echo "<li>$need->name</li>";
+                        echo "<li>".htmlspecialchars($need->name)."</li>";
                     }
                     ?>
                 </ul>
-        </div>
-                </p>
+            </div>
             </a>
         </li>
 </ul>

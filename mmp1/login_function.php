@@ -1,12 +1,11 @@
-<!-- 
-Multimedia Projekt 1
-Multimedia Technology
-Fachhochschule Salzburg
-Niklas Clemens Noldin
-fhs41321
--->
-
 <?php
+
+// Multimedia Projekt 1
+// Multimedia Technology
+// Fachhochschule Salzburg
+// Niklas Clemens Noldin
+// fhs41321
+
     if(!empty($_POST['user'])){
         $passchecker = $dbh->prepare("SELECT \"password\" AS pass FROM users WHERE \"username\" = ? LIMIT 1");
 
@@ -37,12 +36,12 @@ fhs41321
 
         try{
             $createhandle->execute(array(
-                htmlspecialchars($_POST['username']),
-                htmlspecialchars($_POST['mail']),
-                htmlspecialchars($_POST['firstname']),
-                htmlspecialchars($_POST['lastname']),
+                $_POST['username'],
+                $_POST['mail'],
+                $_POST['firstname'],
+                $_POST['lastname'],
                 password_hash($_POST['password'], PASSWORD_BCRYPT,array("cost" => 10)),
-                htmlspecialchars($isfemale),
+                $isfemale,
                 date(DATE_RFC822)
             ));
 
